@@ -29,15 +29,14 @@ describe('FizzBuzz', () => {
     }
   );
 
-  test('FizzBuzz of 5 should be "Buzz"', () => {
-    expect(fizzBuzz(5)).toBe('Buzz');
-  });
-
-  test('FizzBuzz of 10 should be "Buzz"', () => {
-    expect(fizzBuzz(10)).toBe('Buzz');
-  });
-
-  test('FizzBuzz of 20 should be "Buzz"', () => {
-    expect(fizzBuzz(20)).toBe('Buzz');
-  });
+  test.each([
+    [5, 'Buzz'],
+    [10, 'Buzz'],
+    [20, 'Buzz'],
+  ])(
+    'Fizzbuzz of %s should be "%s"',
+    (input: number, expectedValue: string) => {
+      expect(fizzBuzz(input)).toBe(expectedValue);
+    }
+  );
 });
