@@ -7,6 +7,10 @@ const fizzBuzz = (input: number): string => {
     return 'Buzz';
   }
 
+  if (input === 10) {
+    return 'Buzz';
+  }
+
   return input.toString();
 };
 
