@@ -1,4 +1,8 @@
-const fizzBuzz = (_: number): string => {
+const fizzBuzz = (input: number): string => {
+  if (input === 2) {
+    return '2';
+  }
+
   return '1';
 };
 

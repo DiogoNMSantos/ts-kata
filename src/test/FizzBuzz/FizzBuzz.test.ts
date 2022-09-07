@@ -9,4 +9,8 @@ describe('FizzBuzz', () => {
   test('Return string representation of number 1', () => {
     expect(fizzBuzz(1)).toBe('1');
   });
+
+  test('Retrun string representation of number 2', () => {
+    expect(fizzBuzz(2)).toBe('2');
+  });
 });
