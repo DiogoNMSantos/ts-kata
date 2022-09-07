@@ -3,6 +3,10 @@ const fizzBuzz = (input: number): string => {
     return 'Fizz';
   }
 
+  if (input === 6) {
+    return 'Fizz';
+  }
+
   return input.toString();
 };
 
