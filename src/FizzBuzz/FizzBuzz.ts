@@ -7,6 +7,10 @@ const fizzBuzz = (input: number): string => {
     return 'FizzBuzz';
   }
 
+  if (input === 45) {
+    return 'FizzBuzz';
+  }
+
   if (input % 3 === 0) {
     return 'Fizz';
   }

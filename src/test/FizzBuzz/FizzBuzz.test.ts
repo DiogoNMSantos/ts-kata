@@ -43,6 +43,7 @@ describe('FizzBuzz', () => {
   test.each([
     [15, 'FizzBuzz'],
     [30, 'FizzBuzz'],
+    [45, 'FizzBuzz'],
   ])(
     'Fizzbuzz of multiples of both 3 and 5 should be "%s"',
     (input: number, expectedValue: string) => {
