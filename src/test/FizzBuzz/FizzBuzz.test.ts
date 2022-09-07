@@ -13,4 +13,12 @@ describe('FizzBuzz', () => {
   test('Retrun string representation of number 2', () => {
     expect(fizzBuzz(2)).toBe('2');
   });
+
+  test('Return string representation of number 4', () => {
+    expect(fizzBuzz(4)).toBe('4');
+  });
+
+  test('Return string representation of number 7', () => {
+    expect(fizzBuzz(7)).toBe('7');
+  });
 });
