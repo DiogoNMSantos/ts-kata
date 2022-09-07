@@ -17,4 +17,8 @@ describe('FizzBuzz', () => {
       expect(fizzBuzz(input)).toBe(expectedValue);
     }
   );
+
+  test('FizzBuzz of 3 is "Fizz"', () => {
+    expect(fizzBuzz(3)).toBe('Fizz');
+  });
 });
