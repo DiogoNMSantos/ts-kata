@@ -39,4 +39,11 @@ describe('FizzBuzz', () => {
       expect(fizzBuzz(input)).toBe(expectedValue);
     }
   );
+
+  test.each([[15, 'FizzBuzz']])(
+    'Fizzbuzz of multiples of both 3 and 5 should be "%s"',
+    (input: number, expectedValue: string) => {
+      expect(fizzBuzz(input)).toBe(expectedValue);
+    }
+  );
 });
