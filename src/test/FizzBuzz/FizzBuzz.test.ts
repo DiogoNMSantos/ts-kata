@@ -6,19 +6,15 @@
 import fizzBuzz from '../../FizzBuzz/FizzBuzz';
 
 describe('FizzBuzz', () => {
-  test('Return string representation of number 1', () => {
-    expect(fizzBuzz(1)).toBe('1');
-  });
-
-  test('Retrun string representation of number 2', () => {
-    expect(fizzBuzz(2)).toBe('2');
-  });
-
-  test('Return string representation of number 4', () => {
-    expect(fizzBuzz(4)).toBe('4');
-  });
-
-  test('Return string representation of number 7', () => {
-    expect(fizzBuzz(7)).toBe('7');
-  });
+  test.each([
+    [1, '1'],
+    [2, '2'],
+    [4, '4'],
+    [7, '7'],
+  ])(
+    'Fizzbuzz of %s should be "%s"',
+    (input: number, expectedValue: string) => {
+      expect(fizzBuzz(input)).toBe(expectedValue);
+    }
+  );
 });
