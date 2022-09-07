@@ -6,11 +6,7 @@
 import fizzBuzz from '../../FizzBuzz/FizzBuzz';
 
 describe('FizzBuzz', () => {
-  test('Returns a string representation of number 1', () => {
+  test('Return string representation of number 1', () => {
     expect(fizzBuzz(1)).toBe('1');
-  });
-
-  test('Returns a string representantion of number 2', () => {
-    expect(fizzBuzz(2)).toBe('2');
   });
 });

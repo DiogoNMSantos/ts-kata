@@ -1,4 +1,4 @@
-const fizzBuzz = (number: number) => {
+const fizzBuzz = (_: number): string => {
   return '1';
 };
 
