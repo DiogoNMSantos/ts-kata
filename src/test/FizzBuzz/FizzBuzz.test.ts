@@ -23,7 +23,7 @@ describe('FizzBuzz', () => {
     [6, 'Fizz'],
     [9, 'Fizz'],
   ])(
-    'Fizzbuzz of %s should be "%s"',
+    'Fizzbuzz of multiples of 3 should be "%s"',
     (input: number, expectedValue: string) => {
       expect(fizzBuzz(input)).toBe(expectedValue);
     }
@@ -34,7 +34,7 @@ describe('FizzBuzz', () => {
     [10, 'Buzz'],
     [20, 'Buzz'],
   ])(
-    'Fizzbuzz of %s should be "%s"',
+    'Fizzbuzz of multiples of 5 should be "%s"',
     (input: number, expectedValue: string) => {
       expect(fizzBuzz(input)).toBe(expectedValue);
     }
