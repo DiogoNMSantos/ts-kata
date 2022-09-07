@@ -18,15 +18,14 @@ describe('FizzBuzz', () => {
     }
   );
 
-  test('FizzBuzz of 3 is "Fizz"', () => {
-    expect(fizzBuzz(3)).toBe('Fizz');
-  });
-
-  test('FizzBuzz of 6 is "Fizz"', () => {
-    expect(fizzBuzz(6)).toBe('Fizz');
-  });
-
-  test('FizzBuzz of 9 is "Fizz"', () => {
-    expect(fizzBuzz(9)).toBe('Fizz');
-  });
+  test.each([
+    [3, 'Fizz'],
+    [6, 'Fizz'],
+    [9, 'Fizz'],
+  ])(
+    'Fizzbuzz of %s should be "%s"',
+    (input: number, expectedValue: string) => {
+      expect(fizzBuzz(input)).toBe(expectedValue);
+    }
+  );
 });
