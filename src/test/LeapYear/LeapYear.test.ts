@@ -26,4 +26,8 @@ describe('leap year', () => {
   test('year 8 is a leap year', () => {
     expect(leapYear(8)).toBe(true);
   });
+
+  test('year 12 is a leap year', () => {
+    expect(leapYear(12)).toBe(true);
+  });
 });
