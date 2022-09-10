@@ -34,6 +34,8 @@ describe('leap year', () => {
     [100, false],
     [200, false],
     [300, false],
+    [1900, false],
+    [2001, false],
   ])(
     'years divisible by 100 are not leap years',
     (year: number, isLeapYear: boolean) => {
@@ -45,6 +47,7 @@ describe('leap year', () => {
     [400, true],
     [800, true],
     [1200, true],
+    [2000, true],
   ])(
     'years divisible by 400 are leap years',
     (year: number, isLeapYear: boolean) => {
