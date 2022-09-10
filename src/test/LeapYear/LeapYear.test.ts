@@ -19,15 +19,11 @@ describe('leap year', () => {
     expect(leapYear(2)).toBe(false);
   });
 
-  test('year 4 is a leap year', () => {
-    expect(leapYear(4)).toBe(true);
-  });
-
-  test('year 8 is a leap year', () => {
-    expect(leapYear(8)).toBe(true);
-  });
-
-  test('year 12 is a leap year', () => {
-    expect(leapYear(12)).toBe(true);
+  test.each([
+    [4, true],
+    [8, true],
+    [12, true],
+  ])('year 4 is a leap year', (year: number, isLeapYear: boolean) => {
+    expect(leapYear(year)).toBe(isLeapYear);
   });
 });
