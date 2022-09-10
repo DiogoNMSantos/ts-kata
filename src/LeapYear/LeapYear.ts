@@ -1,5 +1,5 @@
 const leapYear = (year: number): boolean => {
-  return year === 4 || year === 8 || year === 12;
+  return year % 4 === 0;
 };
 
 export default leapYear;
