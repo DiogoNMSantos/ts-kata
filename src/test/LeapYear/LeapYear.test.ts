@@ -41,15 +41,14 @@ describe('leap year', () => {
     }
   );
 
-  test('year 400 is a leap year', () => {
-    expect(leapYear(400)).toBe(true);
-  });
-
-  test('year 800 is a leap year', () => {
-    expect(leapYear(800)).toBe(true);
-  });
-
-  test('year 1200 is a leap year', () => {
-    expect(leapYear(1200)).toBe(true);
-  });
+  test.each([
+    [400, true],
+    [800, true],
+    [1200, true],
+  ])(
+    'years divisible by 400 are leap years',
+    (year: number, isLeapYear: boolean) => {
+      expect(leapYear(year)).toBe(isLeapYear);
+    }
+  );
 });
