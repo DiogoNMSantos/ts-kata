@@ -23,7 +23,10 @@ describe('leap year', () => {
     [4, true],
     [8, true],
     [12, true],
-  ])('year 4 is a leap year', (year: number, isLeapYear: boolean) => {
-    expect(leapYear(year)).toBe(isLeapYear);
-  });
+  ])(
+    'years divisible by 4 are leap years',
+    (year: number, isLeapYear: boolean) => {
+      expect(leapYear(year)).toBe(isLeapYear);
+    }
+  );
 });
