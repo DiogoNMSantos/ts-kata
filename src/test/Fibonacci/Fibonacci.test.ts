@@ -11,15 +11,14 @@
 import fib from '../../Fibonacci/Fibonacci';
 
 describe('Fibonacci', () => {
-  test('Position 0 in the fibonacci sequence is 0', () => {
-    expect(fib(0)).toBe(0);
-  });
-
-  test('Position 1 in the fibonacci sequence is 1', () => {
-    expect(fib(1)).toBe(1);
-  });
-
-  test('Position 2 in the fibonacci sequence is 1', () => {
-    expect(fib(2)).toBe(1);
-  });
+  test.each([
+    [0, 0],
+    [1, 1],
+    [2, 1],
+  ])(
+    'Position %s in the fibonacci sequence is %s',
+    (step: number, fibonacciNumber: number) => {
+      expect(fib(step)).toBe(fibonacciNumber);
+    }
+  );
 });
