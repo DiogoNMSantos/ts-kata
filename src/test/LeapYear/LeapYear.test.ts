@@ -37,4 +37,8 @@ describe('leap year', () => {
   test('year 200 is not a leap year', () => {
     expect(leapYear(200)).toBe(false);
   });
+
+  test('year 300 is not a leap year', () => {
+    expect(leapYear(300)).toBe(false);
+  });
 });
