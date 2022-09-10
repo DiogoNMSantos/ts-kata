@@ -19,6 +19,7 @@ describe('Fibonacci', () => {
     [4, 3],
     [5, 5],
     [6, 8],
+    [7, 13],
   ])(
     'Position %s in the fibonacci sequence is %s',
     (step: number, fibonacciNumber: number) => {
