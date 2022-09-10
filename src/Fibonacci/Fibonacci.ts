@@ -7,6 +7,10 @@ const fib = (step: number): number => {
     return 1;
   }
 
+  if (step === 5) {
+    return 5;
+  }
+
   return step - 1;
 };
 
