@@ -7,19 +7,7 @@ const fib = (step: number): number => {
     return 1;
   }
 
-  if (step === 5) {
-    return 5;
-  }
-
-  if (step === 6) {
-    return 8;
-  }
-
-  if (step === 7) {
-    return 13;
-  }
-
-  return step - 1;
+  return fib(step - 2) + fib(step - 1);
 };
 
 export default fib;
