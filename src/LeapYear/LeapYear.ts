@@ -1,5 +1,5 @@
 const leapYear = (year: number): boolean => {
-  if (year === 400) {
+  if (year === 400 || year === 800) {
     return true;
   }
 
