@@ -30,15 +30,14 @@ describe('leap year', () => {
     }
   );
 
-  test('year 100 is not a leap year', () => {
-    expect(leapYear(100)).toBe(false);
-  });
-
-  test('year 200 is not a leap year', () => {
-    expect(leapYear(200)).toBe(false);
-  });
-
-  test('year 300 is not a leap year', () => {
-    expect(leapYear(300)).toBe(false);
-  });
+  test.each([
+    [100, false],
+    [200, false],
+    [300, false],
+  ])(
+    'years divisible by 100 are not leap years',
+    (year: number, isLeapYear: boolean) => {
+      expect(leapYear(year)).toBe(isLeapYear);
+    }
+  );
 });
