@@ -25,6 +25,16 @@ describe('Roman numerals', () => {
     [49, 'XLIX'],
     [50, 'L'],
     [54, 'LIV'],
+    [64, 'LXIV'],
+    [76, 'LXXVI'],
+    [88, 'LXXXVIII'],
+    [91, 'XCI'],
+    [199, 'CXCIX'],
+    [456, 'CDLVI'],
+    [525, 'DXXV'],
+    [986, 'CMLXXXVI'],
+    [1237, 'MCCXXXVII'],
+    [3999, 'MMMCMXCIX'],
   ])(
     'roman numeral for %s is %s',
     (arabicNumber: number, expectedRomanNumeral: string) => {
