@@ -1,4 +1,8 @@
-const romanNumeral = (_: number): string => {
+const romanNumeral = (arabicNumber: number): string => {
+  if (arabicNumber === 2) {
+    return 'II';
+  }
+
   return 'I';
 };
 

@@ -9,4 +9,8 @@ describe('Roman numerals', () => {
   test('roman numeral for 1 is "I"', () => {
     expect(romanNumeral(1)).toBe('I');
   });
+
+  test('roman numeral for 2 is "II"', () => {
+    expect(romanNumeral(2)).toBe('II');
+  });
 });
