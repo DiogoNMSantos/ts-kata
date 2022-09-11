@@ -18,6 +18,7 @@ describe('Roman numerals', () => {
     [9, 'IX'],
     [10, 'X'],
     [15, 'XV'],
+    [29, 'XXIX'],
   ])(
     'roman numeral for %s is %s',
     (arabicNumber: number, expectedRomanNumeral: string) => {
