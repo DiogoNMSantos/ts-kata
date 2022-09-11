@@ -1,13 +1,7 @@
-const romanNumeral = (arabicNumber: number): string => {
-  if (arabicNumber === 2) {
-    return 'II';
-  }
+const romanNumeral = (arabicNumber: number): string | undefined => {
+  const arabicToRoman = ['I', 'II', 'III'];
 
-  if (arabicNumber === 3) {
-    return 'III';
-  }
-
-  return 'I';
+  return arabicToRoman[arabicNumber - 1];
 };
 
 export default romanNumeral;
