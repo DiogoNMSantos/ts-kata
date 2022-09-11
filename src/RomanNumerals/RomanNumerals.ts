@@ -1,19 +1,18 @@
 const romanNumeral = (arabicNumber: number): string | undefined => {
-  const arabicToRoman = [
-    'I',
-    'II',
-    'III',
-    'IV',
-    'V',
-    'VI',
-    'VII',
-    'VIII',
-    'IX',
-    'X',
-  ];
+  const arabicToRoman: { [id: number]: string } = {
+    1: 'I',
+    4: 'IV',
+    5: 'V',
+    9: 'IX',
+    10: 'X',
+  };
 
   if (arabicNumber === 0) {
     return '';
+  }
+
+  if (arabicToRoman[arabicNumber] != undefined) {
+    return arabicToRoman[arabicNumber];
   }
 
   if (arabicNumber < 4) {
@@ -24,7 +23,7 @@ const romanNumeral = (arabicNumber: number): string | undefined => {
     return 'V' + romanNumeral(arabicNumber - 5);
   }
 
-  return arabicToRoman[arabicNumber - 1];
+  return '';
 };
 
 export default romanNumeral;
