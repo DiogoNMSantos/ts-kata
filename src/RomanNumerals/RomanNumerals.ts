@@ -19,12 +19,8 @@ const romanNumeral = (arabicNumber: number): string | undefined => {
     return '';
   }
 
-  if (arabicToRoman.has(arabicNumber)) {
-    return arabicToRoman.get(arabicNumber);
-  }
-
   for (const [arabic, roman] of new Map(Array.from(arabicToRoman).reverse())) {
-    if (arabicNumber > arabic) {
+    if (arabicNumber >= arabic) {
       return roman + romanNumeral(arabicNumber - arabic);
     }
   }
