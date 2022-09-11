@@ -5,7 +5,7 @@ const romanNumeral = (arabicNumber: number): string | undefined => {
     5: 'V',
     9: 'IX',
     10: 'X',
-    15: 'XV',
+    40: 'XL',
   };
 
   if (arabicNumber === 0) {
@@ -14,6 +14,10 @@ const romanNumeral = (arabicNumber: number): string | undefined => {
 
   if (arabicToRoman[arabicNumber] != undefined) {
     return arabicToRoman[arabicNumber];
+  }
+
+  if (arabicNumber > 40) {
+    return 'XL' + romanNumeral(arabicNumber - 40);
   }
 
   if (arabicNumber > 10) {
