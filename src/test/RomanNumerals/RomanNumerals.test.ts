@@ -3,11 +3,10 @@
 // and convert to their roman equivalent.
 // const romanNumeral = romanNumerals(int number).
 
-import romanNumeral from '../../RomanNumbers/RomanNumbers';
+import romanNumeral from '../../RomanNumerals/RomanNumerals';
 
 describe('Roman numerals', () => {
-  test('roman numeral for 0 is undefined', () => {
-    expect(romanNumeral(0)).toBe('something');
+  test('roman numeral for 1 is "I"', () => {
+    expect(romanNumeral(1)).toBe('I');
   });
 });
-o;

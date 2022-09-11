@@ -1,5 +1,5 @@
 const romanNumeral = (_: number): string => {
-  return '';
+  return 'I';
 };
 
 export default romanNumeral;
