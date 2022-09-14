@@ -24,6 +24,7 @@
     "test:fizz": "npm test -- src/test/FizzBuzz/FizzBuzz.test.ts --watch",
     "test:fib": "npm test -- src/test/Fibonacci/Fibonacci.test.ts --watch",
     "test:roman": "npm test -- src/test/RomanNumerals/RomanNumerals.test.ts --watch",
+    "test:tic": "npm test -- src/test/TicTacToe/TicTacToe.test.ts --watch",
     "precommit": "npm-run-all -p lint types test build",
     "test:ci": "jest test --watchAll=false --coverage=true",
     "mutants": "stryker run",
