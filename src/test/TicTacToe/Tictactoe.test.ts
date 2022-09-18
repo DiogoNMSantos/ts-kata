@@ -20,4 +20,10 @@ describe('Tic Tac Toe', () => {
   test('Player X can play in the first move', () => {
     expect(new TicTacToe().play(1, 1, 'X')).toBe(true);
   });
+
+  test('Player O can play in the second move', () => {
+    const game = new TicTacToe();
+    game.play(1, 1, 'X');
+    expect(game.play(2, 2, 'O')).toBe(true);
+  });
 });
