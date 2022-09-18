@@ -8,10 +8,12 @@
 // a game is over when all fields in a diagonal are taken by a player
 // a game is over when all fields are taken
 
-import ticTacToe from '../../TicTacToe/Tictactoe';
+import TicTacToe from '../../TicTacToe/Tictactoe';
 
 describe('Tic Tac Toe', () => {
-  test('a game is over when all fields in a row are taken by a player', () => {
-    expect(ticTacToe()).toBe(true);
+  test('player O can not play in the first move', () => {
+    expect(() => new TicTacToe().play(1, 1, 'O')).toThrowError(
+      'player O can not play first'
+    );
   });
 });
