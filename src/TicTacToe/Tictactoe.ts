@@ -1,6 +1,9 @@
 class TicTacToe {
-  play(_: number, __: number, ___: string) {
-    throw 'player O can not play first';
+  play(_: number, __: number, player: string) {
+    if (player === 'O') {
+      throw 'player O can not play first';
+    }
+    return true;
   }
 }
 

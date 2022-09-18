@@ -16,4 +16,8 @@ describe('Tic Tac Toe', () => {
       'player O can not play first'
     );
   });
+
+  test('Player X can play in the first move', () => {
+    expect(new TicTacToe().play(1, 1, 'X')).toBe(true);
+  });
 });
