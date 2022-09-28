@@ -27,9 +27,24 @@ describe('Tic Tac Toe', () => {
     expect(game.play(2, 2, 'O')).toBe(true);
   });
 
+  test('Player X can not play in the second move', () => {
+    const game = new TicTacToe();
+    game.play(1, 1, 'X');
+    expect(() => game.play(2, 2, 'X')).toThrowError(
+      'player can not play twice in a row'
+    );
+  });
+
   test('Player O can not play where player X has played', () => {
     const game = new TicTacToe();
     game.play(1, 1, 'X');
     expect(() => game.play(1, 1, 'O')).toThrowError('position already played');
+  });
+
+  test('Player can not play on any previous played position', () => {
+    const game = new TicTacToe();
+    game.play(1, 1, 'X');
+    game.play(2, 2, 'O');
+    expect(() => game.play(1, 1, 'X')).toThrowError('position already played');
   });
 });
