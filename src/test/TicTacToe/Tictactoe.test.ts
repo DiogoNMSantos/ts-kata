@@ -7,6 +7,9 @@
 // a game is over when all fields in a column are taken by a player
 // a game is over when all fields in a diagonal are taken by a player
 // a game is over when all fields are taken
+// top: x | x | o
+// mid: o | x | o
+// bot: x | o | x
 
 import TicTacToe from '../../TicTacToe/Tictactoe';
 
@@ -48,7 +51,7 @@ describe('Tic Tac Toe', () => {
     expect(() => game.play(1, 1, 'X')).toThrowError('position already played');
   });
 
-  test('Player X wins on top row when all three top boxes are filled', () => {
+  test('Player X wins on bottom row when all three bottom boxes are filled', () => {
     const game = new TicTacToe();
     game.play(0, 0, 'X');
     game.play(1, 0, 'O');
