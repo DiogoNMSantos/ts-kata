@@ -1,11 +1,16 @@
 type Player = 'X' | 'O';
 type Position = 0 | 1 | 2;
+type Winner = 'X' | 'O' | 'none' | 'draw';
+type Coordinate = { x: Position; y: Position };
 
 class TicTacToe {
   moves = 0;
   lastPlayer = '';
-  lastX: Position[] = [];
-  lastY: Position[] = [];
+  plays: Coordinate[] = [];
+
+  winner(): Winner {
+    return 'none';
+  }
 
   play(x: Position, y: Position, player: Player) {
     if (player === 'O' && this.moves === 0) {
@@ -16,15 +21,11 @@ class TicTacToe {
       throw 'player can not play twice in a row';
     }
 
-    if (
-      this.lastX.find((value) => value === x) &&
-      y === this.lastY.find((value) => value === y)
-    ) {
+    if (this.plays.find((value) => value.x === x && value.y === y)) {
       throw 'position already played';
     }
 
-    this.lastX.push(x);
-    this.lastY.push(y);
+    this.plays.push({ x, y });
     this.lastPlayer = player;
     this.moves++;
 
