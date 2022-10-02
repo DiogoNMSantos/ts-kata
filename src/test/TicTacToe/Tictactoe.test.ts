@@ -48,13 +48,13 @@ describe('Tic Tac Toe', () => {
     expect(() => game.play(1, 1, 'X')).toThrowError('position already played');
   });
 
-  // test('Player X wins on top row when all three top boxes are filled', () => {
-  //   const game = new TicTacToe();
-  //   game.play(0, 0, 'X');
-  //   game.play(1, 0, 'O');
-  //   game.play(0, 1, 'X');
-  //   game.play(1, 1, 'O');
-  //   game.play(0, 2, 'X');
-  //   expect(game.winner()).toBe('X');
-  // });
+  test('Player X wins on top row when all three top boxes are filled', () => {
+    const game = new TicTacToe();
+    game.play(0, 0, 'X');
+    game.play(1, 0, 'O');
+    game.play(0, 1, 'X');
+    game.play(1, 1, 'O');
+    game.play(0, 2, 'X');
+    expect(game.winner()).toBe('X');
+  });
 });

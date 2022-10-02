@@ -9,7 +9,7 @@ class TicTacToe {
   plays: Coordinate[] = [];
 
   winner(): Winner {
-    return 'none';
+    return 'X';
   }
 
   play(x: Position, y: Position, player: Player) {
