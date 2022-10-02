@@ -9,8 +9,20 @@ class TicTacToe {
       throw 'player O can not play first';
     }
 
+    if (player !== 'X' && player !== 'O') {
+      throw 'Invalid player';
+    }
+
     if (player === this.lastPlayer) {
       throw 'player can not play twice in a row';
+    }
+
+    if (x < 0 || x > 2) {
+      throw 'Invalid position';
+    }
+
+    if (y < 0 || y > 2) {
+      throw 'Invalid position';
     }
 
     if (
