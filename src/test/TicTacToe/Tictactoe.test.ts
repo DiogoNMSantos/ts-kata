@@ -50,18 +50,6 @@ describe('Tic Tac Toe', () => {
     expect(() => game.play(1, 1, 'X')).toThrowError('position already played');
   });
 
-  test('Do not allow an invalid player to play', () => {
-    expect(() => new TicTacToe().play(1, 1, 'F')).toThrowError(
-      'Invalid player'
-    );
-  });
-
-  test('Do not allow a third player to play', () => {
-    expect(() => new TicTacToe().play(1, 1, 'P')).toThrowError(
-      'Invalid player'
-    );
-  });
-
   test('Do not allow player to play negative positions X', () => {
     expect(() => new TicTacToe().play(-1, 0, 'X')).toThrowError(
       invalidPosition
