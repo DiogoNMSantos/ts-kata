@@ -1,4 +1,5 @@
 type Player = 'X' | 'O';
+type Position = 0 | 1 | 2;
 
 class TicTacToe {
   moves = 0;
@@ -6,7 +7,7 @@ class TicTacToe {
   lastX: number[] = [];
   lastY: number[] = [];
 
-  play(x: number, y: number, player: Player) {
+  play(x: Position, y: Position, player: Player) {
     if (player === 'O' && this.moves === 0) {
       throw 'player O can not play first';
     }

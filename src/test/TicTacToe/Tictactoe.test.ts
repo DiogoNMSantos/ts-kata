@@ -11,8 +11,6 @@
 import TicTacToe from '../../TicTacToe/Tictactoe';
 
 describe('Tic Tac Toe', () => {
-  const invalidPosition = 'Invalid position';
-
   test('player O can not play in the first move', () => {
     expect(() => new TicTacToe().play(1, 1, 'O')).toThrowError(
       'player O can not play first'
@@ -48,25 +46,5 @@ describe('Tic Tac Toe', () => {
     game.play(1, 1, 'X');
     game.play(2, 2, 'O');
     expect(() => game.play(1, 1, 'X')).toThrowError('position already played');
-  });
-
-  test('Do not allow player to play negative positions X', () => {
-    expect(() => new TicTacToe().play(-1, 0, 'X')).toThrowError(
-      invalidPosition
-    );
-  });
-
-  test('Do not allow player to play negative position Y', () => {
-    expect(() => new TicTacToe().play(0, -1, 'X')).toThrowError(
-      invalidPosition
-    );
-  });
-
-  test('Do not allow player to play over the third position X', () => {
-    expect(() => new TicTacToe().play(3, 0, 'X')).toThrowError(invalidPosition);
-  });
-
-  test('Do not allow player to play over the third position Y', () => {
-    expect(() => new TicTacToe().play(0, 3, 'X')).toThrowError(invalidPosition);
   });
 });
