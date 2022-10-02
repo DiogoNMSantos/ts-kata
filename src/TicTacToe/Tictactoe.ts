@@ -4,8 +4,8 @@ type Position = 0 | 1 | 2;
 class TicTacToe {
   moves = 0;
   lastPlayer = '';
-  lastX: number[] = [];
-  lastY: number[] = [];
+  lastX: Position[] = [];
+  lastY: Position[] = [];
 
   play(x: Position, y: Position, player: Player) {
     if (player === 'O' && this.moves === 0) {
