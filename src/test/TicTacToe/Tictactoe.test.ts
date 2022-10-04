@@ -54,10 +54,21 @@ describe('Tic Tac Toe', () => {
   test('Player X wins on bottom row when all three bottom boxes are filled', () => {
     const game = new TicTacToe();
     game.play(0, 0, 'X');
-    game.play(1, 0, 'O');
-    game.play(0, 1, 'X');
+    game.play(0, 1, 'O');
+    game.play(1, 0, 'X');
     game.play(1, 1, 'O');
-    game.play(0, 2, 'X');
+    game.play(2, 0, 'X');
     expect(game.winner()).toBe('X');
+  });
+
+  test('Player O wins on middle row when all three middle boxes are filled', () => {
+    const game = new TicTacToe();
+    game.play(0, 0, 'X');
+    game.play(0, 1, 'O');
+    game.play(2, 0, 'X');
+    game.play(1, 1, 'O');
+    game.play(2, 2, 'X');
+    game.play(2, 1, 'O');
+    expect(game.winner()).toBe('O');
   });
 });
