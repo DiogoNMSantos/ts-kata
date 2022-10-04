@@ -71,4 +71,14 @@ describe('Tic Tac Toe', () => {
     game.play(2, 1, 'O');
     expect(game.winner()).toBe('O');
   });
+
+  test('Player X wins on top row when all three top boxes are filled', () => {
+    const game = new TicTacToe();
+    game.play(0, 2, 'X');
+    game.play(0, 0, 'O');
+    game.play(1, 2, 'X');
+    game.play(2, 0, 'O');
+    game.play(2, 2, 'X');
+    expect(game.winner()).toBe('X');
+  });
 });

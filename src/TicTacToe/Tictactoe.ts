@@ -27,6 +27,14 @@ class TicTacToe {
       return middleRow[0]?.player as Winner;
     }
 
+    const topRow = this.plays.filter((p) => p.coordinate.y === 2);
+    if (
+      topRow.length === 3 &&
+      topRow.every((p) => p.player === topRow[0]?.player)
+    ) {
+      return topRow[0]?.player as Winner;
+    }
+
     return 'none';
   }
 
