@@ -70,6 +70,12 @@ describe('RPG Combat', () => {
 
       expect(higherLvl.health).toBe(950);
     });
+
+    test('Targets 5 lvls or more below take 50% increased damage', () => {
+      higherLvl.attack(defender);
+
+      expect(defender.health).toBe(850);
+    });
   });
 
   describe('Character can heal a character', () => {

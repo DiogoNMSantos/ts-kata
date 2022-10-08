@@ -25,6 +25,8 @@ class Character {
 
     if (target.lvl - this.lvl >= 5) {
       target.combatPoints -= 50;
+    } else if (this.lvl - target.lvl >= 5) {
+      target.combatPoints -= 150;
     } else {
       target.combatPoints -= 100;
     }
