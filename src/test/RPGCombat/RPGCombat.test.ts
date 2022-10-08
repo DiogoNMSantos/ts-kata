@@ -1,21 +1,21 @@
-import Character from '../../RPGCombat/RPGCOmbat';
+import { Character, Melee, Ranged } from '../../RPGCombat/RPGCOmbat';
 
 describe('RPG Combat', () => {
-  let attacker: Character = new Character();
-  let defender: Character = new Character();
-  let healer: Character = new Character();
-  let higherLvl: Character = new Character();
+  let attacker: Character = new Melee();
+  let defender: Character = new Melee();
+  let healer: Character = new Melee();
+  let higherLvl: Character = new Melee();
 
   beforeEach(() => {
-    attacker = new Character();
-    defender = new Character();
-    higherLvl = new Character(6);
-    healer = new Character();
+    attacker = new Melee();
+    defender = new Melee();
+    higherLvl = new Melee(6);
+    healer = new Melee();
   });
 
   describe('All character when created have', () => {
     test('lvl 1 and 1000 health', () => {
-      const character: Character = new Character();
+      const character: Character = new Melee();
       expect(character.isAlive).toBe(true);
       expect(character.health).toBe(1000);
       expect(character.level).toBe(1);
@@ -120,8 +120,8 @@ describe('RPG Combat', () => {
   describe('Characters have an attack range', () => {
     describe('Melee fighters have a range of 2 meters', () => {
       test('when fighters are 3 meters apart they do not do damage', () => {
-        const meleeAtacker = new Character(1, 4);
-        const meleeDefender = new Character(1, 1);
+        const meleeAtacker = new Melee(1, 4);
+        const meleeDefender = new Melee(1, 1);
 
         meleeAtacker.attack(meleeDefender);
 
@@ -129,8 +129,8 @@ describe('RPG Combat', () => {
       });
 
       test('when fighters are two o less meters away they deal damage', () => {
-        const meleeAtacker = new Character(1, 1);
-        const meleeDefender = new Character(1, 2);
+        const meleeAtacker = new Melee(1, 1);
+        const meleeDefender = new Melee(1, 2);
 
         meleeAtacker.attack(meleeDefender);
 
@@ -140,15 +140,22 @@ describe('RPG Combat', () => {
 
     describe('Ranged fighters have a range of 20 meters', () => {
       test('when fighters are 21 meters apart they do not do damage', () => {
-        const rangeAttacker = new Character(1, 21);
-        const meleeDefender = new Character(1, 0);
+        const rangeAttacker = new Ranged(1, 21);
+        const meleeDefender = new Melee(1, 0);
 
         rangeAttacker.attack(meleeDefender);
 
         expect(meleeDefender.health).toBe(1000);
       });
 
-      test('when rang');
+      test('when ranged are 20 or less away they deal damage', () => {
+        const rangeAttacker = new Ranged(1, 19);
+        const meleeDefender = new Melee(1, 0);
+
+        rangeAttacker.attack(meleeDefender);
+
+        expect(meleeDefender.health).toBe(900);
+      });
     });
   });
 });
