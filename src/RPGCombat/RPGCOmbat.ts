@@ -1,5 +1,10 @@
-const rpgCombat = () => {
-  return true;
-};
+class Character {
+  isAlive() {
+    return true;
+  }
+  lvl() {
+    return 1;
+  }
+}
 
-export default rpgCombat;
+export default Character;
