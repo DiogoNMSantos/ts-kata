@@ -1,15 +1,15 @@
 class Character {
   private combatPoints = 1000;
 
-  isAlive() {
-    return this.health() !== 0;
+  get isAlive() {
+    return this.health !== 0;
   }
 
-  lvl() {
+  get lvl() {
     return 1;
   }
 
-  health() {
+  get health() {
     return this.combatPoints <= 0 ? 0 : this.combatPoints;
   }
 

@@ -4,9 +4,9 @@ describe('RPG Combat', () => {
   describe('All character when created have', () => {
     test('lvl 1 and 1000 health', () => {
       const character: Character = new Character();
-      expect(character.isAlive()).toBe(true);
-      expect(character.health()).toBe(1000);
-      expect(character.lvl()).toBe(1);
+      expect(character.isAlive).toBe(true);
+      expect(character.health).toBe(1000);
+      expect(character.lvl).toBe(1);
     });
   });
   describe('Characters can deal damage to other characters', () => {
@@ -21,7 +21,7 @@ describe('RPG Combat', () => {
     test('Damage is substracted from health', () => {
       attacker.attack(defender);
 
-      expect(defender.health()).toBe(900);
+      expect(defender.health).toBe(900);
     });
 
     test('When damage exceeds current health, health becomes 0', () => {
@@ -37,7 +37,7 @@ describe('RPG Combat', () => {
       attacker.attack(defender);
       attacker.attack(defender);
 
-      expect(defender.health()).toBe(0);
+      expect(defender.health).toBe(0);
     });
 
     test('When health drops to 0, character dies', () => {
@@ -52,7 +52,7 @@ describe('RPG Combat', () => {
       attacker.attack(defender);
       attacker.attack(defender);
 
-      expect(defender.isAlive()).toBe(false);
+      expect(defender.isAlive).toBe(false);
     });
   });
 });
