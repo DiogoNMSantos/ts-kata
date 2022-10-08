@@ -10,7 +10,7 @@ class Character {
   }
 
   health() {
-    return this.combatPoints;
+    return this.combatPoints <= 0 ? 0 : this.combatPoints;
   }
 
   attack(defender: Character) {

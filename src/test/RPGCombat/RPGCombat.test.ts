@@ -10,13 +10,34 @@ describe('RPG Combat', () => {
     });
   });
   describe('Characters can deal damage to other characters', () => {
-    test('Damage is substracted from health', () => {
-      const attacker: Character = new Character();
-      const defender: Character = new Character();
+    let attacker: Character = new Character();
+    let defender: Character = new Character();
 
+    beforeEach(() => {
+      attacker = new Character();
+      defender = new Character();
+    });
+
+    test('Damage is substracted from health', () => {
       attacker.attack(defender);
 
       expect(defender.health()).toBe(900);
+    });
+
+    test('When damage exceeds current health, health becomes 0', () => {
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+
+      expect(defender.health()).toBe(0);
     });
   });
 });
