@@ -13,21 +13,29 @@ class Character {
     return this.combatPoints;
   }
 
-  attack(defender: Character) {
-    defender.combatPoints -= 100;
+  attack(target: Character) {
+    if (target === this) {
+      return;
+    }
 
-    if (defender.combatPoints < 0) {
-      defender.combatPoints = 0;
+    target.combatPoints -= 100;
+
+    if (target.combatPoints < 0) {
+      target.combatPoints = 0;
     }
   }
 
-  heal(defender: Character) {
-    if (defender.isAlive && defender.health < 1000) {
-      defender.combatPoints += 50;
+  heal(target: Character) {
+    if (target !== this) {
+      return;
     }
 
-    if (defender.health > 1000) {
-      defender.combatPoints = 1000;
+    if (target.isAlive && target.health < 1000) {
+      target.combatPoints += 50;
+    }
+
+    if (target.health > 1000) {
+      target.combatPoints = 1000;
     }
   }
 }

@@ -19,7 +19,7 @@ describe('RPG Combat', () => {
       expect(character.lvl).toBe(1);
     });
   });
-  describe('Characters can deal damage to other characters', () => {
+  describe('Characters can deal damage', () => {
     test('Damage is substracted from health', () => {
       attacker.attack(defender);
 
@@ -56,14 +56,20 @@ describe('RPG Combat', () => {
 
       expect(defender.isAlive).toBe(false);
     });
+
+    test('A character cannot deal damage to itself', () => {
+      attacker.attack(attacker);
+
+      expect(attacker.health).toBe(1000);
+    });
   });
 
   describe('Character can heal a character', () => {
     test('Health of healed characater increases', () => {
-      attacker.attack(defender);
-      healer.heal(defender);
+      attacker.attack(healer);
+      healer.heal(healer);
 
-      expect(defender.health).toBe(950);
+      expect(healer.health).toBe(950);
     });
 
     test('Dead characters cannot be healed', () => {
@@ -87,6 +93,13 @@ describe('RPG Combat', () => {
       healer.heal(defender);
 
       expect(defender.health).toBe(1000);
+    });
+
+    test('A character can only heal it self', () => {
+      attacker.attack(defender);
+      healer.heal(defender);
+
+      expect(defender.health).toBe(900);
     });
   });
 });
