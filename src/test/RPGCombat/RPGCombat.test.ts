@@ -116,4 +116,39 @@ describe('RPG Combat', () => {
       expect(defender.health).toBe(900);
     });
   });
+
+  describe('Characters have an attack range', () => {
+    describe('Melee fighters have a range of 2 meters', () => {
+      test('when fighters are 3 meters apart they do not do damage', () => {
+        const meleeAtacker = new Character(1, 4);
+        const meleeDefender = new Character(1, 1);
+
+        meleeAtacker.attack(meleeDefender);
+
+        expect(meleeDefender.health).toBe(1000);
+      });
+
+      test('when fighters are two o less meters away they deal damage', () => {
+        const meleeAtacker = new Character(1, 1);
+        const meleeDefender = new Character(1, 2);
+
+        meleeAtacker.attack(meleeDefender);
+
+        expect(meleeDefender.health).toBe(900);
+      });
+    });
+
+    describe('Ranged fighters have a range of 20 meters', () => {
+      test('when fighters are 21 meters apart they do not do damage', () => {
+        const rangeAttacker = new Character(1, 21);
+        const meleeDefender = new Character(1, 0);
+
+        rangeAttacker.attack(meleeDefender);
+
+        expect(meleeDefender.health).toBe(1000);
+      });
+
+      test('when rang');
+    });
+  });
 });

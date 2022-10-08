@@ -1,8 +1,16 @@
 class Character {
   private combatPoints = 1000;
   private lvl = 1;
+  private x = 0;
 
-  constructor(lvl = 1) {
+  LEVEL_DAMAGE_DIFFERENCE = 5;
+  DAMAGE = 100;
+  HEAL = 50;
+  MAX_HEALTH = 1000;
+  MELEE_MAX_RANGEE = 2;
+
+  constructor(lvl = 1, x = 1) {
+    this.x = x;
     this.lvl = lvl;
   }
 
@@ -23,12 +31,16 @@ class Character {
       return;
     }
 
-    if (target.lvl - this.lvl >= 5) {
-      target.combatPoints -= 50;
-    } else if (this.lvl - target.lvl >= 5) {
-      target.combatPoints -= 150;
+    if (Math.abs(this.x - target.x) > this.MELEE_MAX_RANGEE) {
+      return;
+    }
+
+    if (target.lvl - this.lvl >= this.LEVEL_DAMAGE_DIFFERENCE) {
+      target.combatPoints -= this.DAMAGE - this.DAMAGE / 2;
+    } else if (this.lvl - target.lvl >= this.LEVEL_DAMAGE_DIFFERENCE) {
+      target.combatPoints -= this.DAMAGE + this.DAMAGE / 2;
     } else {
-      target.combatPoints -= 100;
+      target.combatPoints -= this.DAMAGE;
     }
 
     if (target.combatPoints < 0) {
@@ -41,12 +53,12 @@ class Character {
       return;
     }
 
-    if (target.isAlive && target.health < 1000) {
-      target.combatPoints += 50;
+    if (target.isAlive && target.health < this.MAX_HEALTH) {
+      target.combatPoints += this.HEAL;
     }
 
-    if (target.health > 1000) {
-      target.combatPoints = 1000;
+    if (target.health > this.MAX_HEALTH) {
+      target.combatPoints = this.MAX_HEALTH;
     }
   }
 }
