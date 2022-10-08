@@ -13,8 +13,12 @@ class Character {
     return this.combatPoints <= 0 ? 0 : this.combatPoints;
   }
 
-  attack(defender: Character) {
-    defender.combatPoints = defender.combatPoints - 100;
+  attack(other: Character) {
+    other.combatPoints -= 100;
+  }
+
+  heal(other: Character) {
+    other.combatPoints += 50;
   }
 }
 

@@ -1,6 +1,16 @@
 import Character from '../../RPGCombat/RPGCOmbat';
 
 describe('RPG Combat', () => {
+  let attacker: Character = new Character();
+  let defender: Character = new Character();
+  let healer: Character = new Character();
+
+  beforeEach(() => {
+    attacker = new Character();
+    defender = new Character();
+    healer = new Character();
+  });
+
   describe('All character when created have', () => {
     test('lvl 1 and 1000 health', () => {
       const character: Character = new Character();
@@ -10,14 +20,6 @@ describe('RPG Combat', () => {
     });
   });
   describe('Characters can deal damage to other characters', () => {
-    let attacker: Character = new Character();
-    let defender: Character = new Character();
-
-    beforeEach(() => {
-      attacker = new Character();
-      defender = new Character();
-    });
-
     test('Damage is substracted from health', () => {
       attacker.attack(defender);
 
@@ -53,6 +55,15 @@ describe('RPG Combat', () => {
       attacker.attack(defender);
 
       expect(defender.isAlive).toBe(false);
+    });
+  });
+
+  describe('Character can heal a character', () => {
+    test('Dead characters cannot be healed', () => {
+      attacker.attack(defender);
+      healer.heal(defender);
+
+      expect(defender.health).toBe(950);
     });
   });
 });
