@@ -11,27 +11,18 @@ class TicTacToe {
 
   winner(): Winner {
     //[{x, {0, 0}}, {x, {1, 0}}, {x, {2, 0}}]
-    const bottomRow = this.plays.filter((p) => p.coordinate.y === 0);
-    if (
-      bottomRow.length === 3 &&
-      bottomRow.every((p) => p.player === bottomRow[0]?.player)
-    ) {
+    const bottomRow = this.row(0);
+    if (this.winnerOnRow(bottomRow)) {
       return bottomRow[0]?.player as Winner;
     }
 
-    const middleRow = this.plays.filter((p) => p.coordinate.y === 1);
-    if (
-      middleRow.length === 3 &&
-      middleRow.every((p) => p.player === middleRow[0]?.player)
-    ) {
+    const middleRow = this.row(1);
+    if (this.winnerOnRow(middleRow)) {
       return middleRow[0]?.player as Winner;
     }
 
-    const topRow = this.plays.filter((p) => p.coordinate.y === 2);
-    if (
-      topRow.length === 3 &&
-      topRow.every((p) => p.player === topRow[0]?.player)
-    ) {
+    const topRow = this.row(2);
+    if (this.winnerOnRow(topRow)) {
       return topRow[0]?.player as Winner;
     }
 
@@ -60,6 +51,14 @@ class TicTacToe {
     this.plays.push({ player: player, coordinate: { x, y } });
 
     return true;
+  }
+
+  private row(rowNumber: number): Play[] {
+    return this.plays.filter((p) => p.coordinate.y === rowNumber);
+  }
+
+  private winnerOnRow(row: Play[]): boolean {
+    return row.length === 3 && row.every((p) => p.player === row[0]?.player);
   }
 }
 
