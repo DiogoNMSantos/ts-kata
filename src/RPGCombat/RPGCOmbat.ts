@@ -18,7 +18,7 @@ class Character {
   }
 
   heal(other: Character) {
-    other.combatPoints += 50;
+    if (other.isAlive) other.combatPoints += 50;
   }
 }
 

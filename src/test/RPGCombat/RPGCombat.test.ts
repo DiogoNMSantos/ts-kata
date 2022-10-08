@@ -59,11 +59,28 @@ describe('RPG Combat', () => {
   });
 
   describe('Character can heal a character', () => {
-    test('Dead characters cannot be healed', () => {
+    test('Health of healed characater increases', () => {
       attacker.attack(defender);
       healer.heal(defender);
 
       expect(defender.health).toBe(950);
+    });
+
+    test('Dead characters cannot be healed', () => {
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+
+      healer.heal(defender);
+
+      expect(defender.isAlive).toBe(false);
     });
   });
 });
