@@ -2,7 +2,7 @@ class Character {
   private combatPoints = 1000;
 
   isAlive() {
-    return true;
+    return this.health() !== 0;
   }
 
   lvl() {

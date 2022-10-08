@@ -39,5 +39,20 @@ describe('RPG Combat', () => {
 
       expect(defender.health()).toBe(0);
     });
+
+    test('When health drops to 0, character dies', () => {
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+
+      expect(defender.isAlive()).toBe(false);
+    });
   });
 });
