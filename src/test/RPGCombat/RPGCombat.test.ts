@@ -82,5 +82,11 @@ describe('RPG Combat', () => {
 
       expect(defender.isAlive).toBe(false);
     });
+
+    test('Healing cannot raise health above 1000', () => {
+      healer.heal(defender);
+
+      expect(defender.health).toBe(1000);
+    });
   });
 });
