@@ -4,10 +4,12 @@ describe('RPG Combat', () => {
   let attacker: Character = new Character();
   let defender: Character = new Character();
   let healer: Character = new Character();
+  let higherLvl: Character = new Character();
 
   beforeEach(() => {
     attacker = new Character();
     defender = new Character();
+    higherLvl = new Character(6);
     healer = new Character();
   });
 
@@ -16,7 +18,7 @@ describe('RPG Combat', () => {
       const character: Character = new Character();
       expect(character.isAlive).toBe(true);
       expect(character.health).toBe(1000);
-      expect(character.lvl).toBe(1);
+      expect(character.level).toBe(1);
     });
   });
   describe('Characters can deal damage', () => {
@@ -62,6 +64,12 @@ describe('RPG Combat', () => {
 
       expect(attacker.health).toBe(1000);
     });
+
+    test('Tasrgets 5 lvls or above take 50% reduced damage', () => {
+      attacker.attack(higherLvl);
+
+      expect(higherLvl.health).toBe(950);
+    });
   });
 
   describe('Character can heal a character', () => {
@@ -95,7 +103,7 @@ describe('RPG Combat', () => {
       expect(defender.health).toBe(1000);
     });
 
-    test('A character can only heal it self', () => {
+    test('A character can only heal itself', () => {
       attacker.attack(defender);
       healer.heal(defender);
 
