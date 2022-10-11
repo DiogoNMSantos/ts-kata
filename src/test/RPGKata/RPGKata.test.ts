@@ -30,4 +30,15 @@ describe('RPG Kata', () => {
       expect(ranged.alive()).toBe(true);
     });
   });
+
+  describe('Combat', () => {
+    test('attacker deals 100 damage to other chracters', () => {
+      const attacker = new MeleeCharacter();
+      const defender = new MeleeCharacter();
+
+      attacker.attack(defender);
+
+      expect(defender.health()).toBe(900);
+    });
+  });
 });
