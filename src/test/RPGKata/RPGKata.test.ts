@@ -25,5 +25,9 @@ describe('RPG Kata', () => {
     test('start at level 1', () => {
       expect(ranged.level()).toBe(1);
     });
+
+    test('start alive', () => {
+      expect(ranged.alive()).toBe(true);
+    });
   });
 });

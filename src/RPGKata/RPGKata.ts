@@ -20,6 +20,10 @@ class RangedCharacter {
   level() {
     return 1;
   }
+
+  alive() {
+    return true;
+  }
 }
 
 export { MeleeCharacter, RangedCharacter };
