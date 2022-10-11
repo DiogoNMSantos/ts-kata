@@ -19,8 +19,10 @@ class MeleeCharacter {
 }
 
 class RangedCharacter {
+  currentHealth = 700;
+
   health() {
-    return 700;
+    return this.currentHealth;
   }
 
   level() {
@@ -29,6 +31,10 @@ class RangedCharacter {
 
   alive() {
     return true;
+  }
+
+  attack(defender: RangedCharacter) {
+    defender.currentHealth -= 100;
   }
 }
 
