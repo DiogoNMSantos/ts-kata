@@ -1,4 +1,4 @@
-class Character {
+class MeleeCharacter {
   health() {
     return 1000;
   }
@@ -12,4 +12,10 @@ class Character {
   }
 }
 
-export default Character;
+class RangedCharacter {
+  health() {
+    return 700;
+  }
+}
+
+export { MeleeCharacter, RangedCharacter };

@@ -1,8 +1,8 @@
-import Character from '../../RPGKata/RPGKata';
+import { MeleeCharacter, RangedCharacter } from '../../RPGKata/RPGKata';
 
 describe('RPG Kata', () => {
   describe('Melee characters', () => {
-    const melee = new Character();
+    const melee = new MeleeCharacter();
     test('when created, have health starting at 1000', () => {
       expect(melee.health()).toBe(1000);
     });
@@ -13,6 +13,13 @@ describe('RPG Kata', () => {
 
     test('start alive', () => {
       expect(melee.alive()).toBe(true);
+    });
+  });
+
+  describe('Ranged characters', () => {
+    const ranged = new RangedCharacter();
+    test('when created, have health starting at 700', () => {
+      expect(ranged.health()).toBe(700);
     });
   });
 });
