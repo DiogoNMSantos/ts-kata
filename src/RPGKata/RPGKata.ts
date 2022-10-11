@@ -1,40 +1,33 @@
-class MeleeCharacter {
-  currentHealth = 1000;
+abstract class Character {
+  currentHealth = 0;
 
-  health() {
+  constructor(maxHealth: number) {
+    this.currentHealth = maxHealth;
+  }
+
+  health(): number {
     return this.currentHealth;
   }
-
-  level() {
+  level(): number {
     return 1;
   }
-
-  alive() {
+  alive(): boolean {
     return true;
   }
-
-  attack(defender: MeleeCharacter) {
+  attack(defender: Character): void {
     defender.currentHealth -= 100;
   }
 }
 
-class RangedCharacter {
-  currentHealth = 700;
-
-  health() {
-    return this.currentHealth;
+class MeleeCharacter extends Character {
+  constructor() {
+    super(1000);
   }
+}
 
-  level() {
-    return 1;
-  }
-
-  alive() {
-    return true;
-  }
-
-  attack(defender: RangedCharacter) {
-    defender.currentHealth -= 100;
+class RangedCharacter extends Character {
+  constructor() {
+    super(700);
   }
 }
 
