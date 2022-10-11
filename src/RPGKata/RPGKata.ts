@@ -1,5 +1,7 @@
-const character = () => {
-  return '';
-};
+class Character {
+  health() {
+    return 1000;
+  }
+}
 
-export default character;
+export default Character;

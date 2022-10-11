@@ -10,13 +10,13 @@ Complete each iteration before reading the next one.
 
 ### Iteration One
 
-1. Melee attackers/defenders, when created, have:
+1. Melee characters, when created, have:
 
 - Health, starting at 1000
 - Level, starting at 1
 - May be Alive or Dead, starting Alive (Alive may be a true/false)
 
-2. Ranged attackers/defenders, when created have:
+2. Ranged characters, when created have:
 
 - Health, starting at 700
 - Level, starting at 1
@@ -30,7 +30,7 @@ Complete each iteration before reading the next one.
 4. A Character can Heal a Character.
 
 - Dead characters cannot be healed
-- Healing cannot raise health above 1000
+- Healing cannot raise health above Max health
 
 ### Iteration Two
 
