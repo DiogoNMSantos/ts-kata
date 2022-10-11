@@ -5,4 +5,9 @@ describe('RPG Kata', () => {
     const melee = new Character();
     expect(melee.health()).toBe(1000);
   });
+
+  test('Melee characters start at level 1', () => {
+    const melee = new Character();
+    expect(melee.level()).toBe(1);
+  });
 });
