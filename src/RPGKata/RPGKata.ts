@@ -6,6 +6,10 @@ class Character {
   level() {
     return 1;
   }
+
+  alive() {
+    return true;
+  }
 }
 
 export default Character;

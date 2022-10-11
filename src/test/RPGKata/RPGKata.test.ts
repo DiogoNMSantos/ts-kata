@@ -10,4 +10,9 @@ describe('RPG Kata', () => {
     const melee = new Character();
     expect(melee.level()).toBe(1);
   });
+
+  test('Melee characters start alive', () => {
+    const melee = new Character();
+    expect(melee.alive()).toBe(true);
+  });
 });
