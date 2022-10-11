@@ -29,7 +29,7 @@ Complete each iteration before reading the next one.
 - Ranged characters deal 100 damage
 - When damage received exceeds current Health, Health becomes 0 and the character dies
 
-1. A Character can Heal a Character.
+4. A Character can Heal a Character.
 
 - Dead characters cannot be healed
 - Healing cannot raise health above Max health
