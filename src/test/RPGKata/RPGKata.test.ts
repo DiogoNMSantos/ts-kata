@@ -21,5 +21,9 @@ describe('RPG Kata', () => {
     test('when created, have health starting at 700', () => {
       expect(ranged.health()).toBe(700);
     });
+
+    test('start at level 1', () => {
+      expect(ranged.level()).toBe(1);
+    });
   });
 });

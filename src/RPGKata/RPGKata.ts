@@ -16,6 +16,10 @@ class RangedCharacter {
   health() {
     return 700;
   }
+
+  level() {
+    return 1;
+  }
 }
 
 export { MeleeCharacter, RangedCharacter };
