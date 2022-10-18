@@ -94,6 +94,22 @@ describe('RPG Kata', () => {
         expect(defender.health()).toBe(0);
         expect(defender.alive()).toBe(false);
       });
+
+      test('Health is below 0 or 0 for ranged characters', () => {
+        const attacker = new RangedCharacter();
+        const defender = new RangedCharacter();
+
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+
+        expect(defender.health()).toBe(0);
+        expect(defender.alive()).toBe(false);
+      });
     });
   });
 });

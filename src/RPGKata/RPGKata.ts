@@ -47,6 +47,10 @@ class RangedCharacter extends Character {
 
   override attack(defender: Character): void {
     defender.currentHealth -= 110;
+
+    if (defender.currentHealth <= 0) {
+      defender.currentHealth = 0;
+    }
   }
 }
 
