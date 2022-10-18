@@ -8,14 +8,21 @@ abstract class Character {
   health(): number {
     return this.currentHealth;
   }
+
   level(): number {
     return 1;
   }
+
   alive(): boolean {
-    return true;
+    return this.currentHealth > 0;
   }
+
   attack(defender: Character): void {
     defender.currentHealth -= 100;
+
+    if (defender.currentHealth <= 0) {
+      defender.currentHealth = 0;
+    }
   }
 }
 
@@ -26,6 +33,10 @@ class MeleeCharacter extends Character {
 
   override attack(defender: Character): void {
     defender.currentHealth -= 80;
+
+    if (defender.currentHealth <= 0) {
+      defender.currentHealth = 0;
+    }
   }
 }
 

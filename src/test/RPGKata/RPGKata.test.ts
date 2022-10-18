@@ -71,5 +71,29 @@ describe('RPG Kata', () => {
         expect(defender.health()).toBe(890);
       });
     });
+
+    describe('A character dies when', () => {
+      test('Health is below 0 or 0', () => {
+        const attacker = new MeleeCharacter();
+        const defender = new MeleeCharacter();
+
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+        attacker.attack(defender);
+
+        expect(defender.health()).toBe(0);
+        expect(defender.alive()).toBe(false);
+      });
+    });
   });
 });
