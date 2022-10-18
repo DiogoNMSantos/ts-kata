@@ -33,22 +33,22 @@ describe('RPG Kata', () => {
 
   describe('Combat', () => {
     describe('Melee', () => {
-      test('attacker deals 100 damage to other melee character', () => {
+      test('attacker deals 80 damage to other melee character', () => {
         const attacker = new MeleeCharacter();
         const defender = new MeleeCharacter();
 
         attacker.attack(defender);
 
-        expect(defender.health()).toBe(900);
+        expect(defender.health()).toBe(920);
       });
 
-      test('attacker deals 100 damage to other ranged character', () => {
+      test('attacker deals 80 damage to other ranged character', () => {
         const attacker = new MeleeCharacter();
         const defender = new RangedCharacter();
 
         attacker.attack(defender);
 
-        expect(defender.health()).toBe(600);
+        expect(defender.health()).toBe(620);
       });
     });
 

@@ -25,8 +25,8 @@ Complete each iteration before reading the next one.
 3. Characters can Deal Damage to Characters.
 
 - Damage is subtracted from Health
-- Melee chracters deal 100 damage
-- Ranged characters deal 100 damage
+- Melee chracters deal 80 damage
+- Ranged characters deal 110 damage
 - When damage received exceeds current Health, Health becomes 0 and the character dies
 
 4. A Character can Heal a Character.

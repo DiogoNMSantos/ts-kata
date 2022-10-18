@@ -23,6 +23,10 @@ class MeleeCharacter extends Character {
   constructor() {
     super(1000);
   }
+
+  override attack(defender: Character): void {
+    defender.currentHealth -= 80;
+  }
 }
 
 class RangedCharacter extends Character {
