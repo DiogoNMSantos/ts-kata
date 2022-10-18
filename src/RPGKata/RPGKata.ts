@@ -20,6 +20,10 @@ abstract class Character {
   attack(defender: Character): void {
     defender.currentHealth -= 100;
 
+    this.checkDefenderDied(defender);
+  }
+
+  protected checkDefenderDied(defender: Character): void {
     if (defender.currentHealth <= 0) {
       defender.currentHealth = 0;
     }
@@ -34,9 +38,7 @@ class MeleeCharacter extends Character {
   override attack(defender: Character): void {
     defender.currentHealth -= 80;
 
-    if (defender.currentHealth <= 0) {
-      defender.currentHealth = 0;
-    }
+    this.checkDefenderDied(defender);
   }
 }
 
@@ -48,9 +50,7 @@ class RangedCharacter extends Character {
   override attack(defender: Character): void {
     defender.currentHealth -= 110;
 
-    if (defender.currentHealth <= 0) {
-      defender.currentHealth = 0;
-    }
+    this.checkDefenderDied(defender);
   }
 }
 
