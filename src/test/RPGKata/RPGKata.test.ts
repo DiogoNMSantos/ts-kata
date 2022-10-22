@@ -112,4 +112,36 @@ describe('RPG Kata', () => {
       });
     });
   });
+
+  describe('Healing', () => {
+    test('A character can not be healed if its dead', () => {
+      const attacker = new RangedCharacter();
+      const defender = new RangedCharacter();
+      const healer = new RangedCharacter();
+
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+      attacker.attack(defender);
+
+      healer.heal(defender);
+
+      expect(defender.alive()).toBe(false);
+    });
+
+    test('cannot raise health above Max health', () => {
+      const attacker = new RangedCharacter();
+      const defender = new RangedCharacter();
+      const healer = new RangedCharacter();
+
+      attacker.attack(defender);
+
+      healer.heal(defender);
+
+      expect(defender.health()).toBe(670);
+    });
+  });
 });

@@ -23,6 +23,12 @@ abstract class Character {
     this.checkDefenderDied(defender);
   }
 
+  heal(healed: Character): void {
+    if (healed.alive()) {
+      healed.currentHealth += 80;
+    }
+  }
+
   protected checkDefenderDied(defender: Character): void {
     if (defender.currentHealth <= 0) {
       defender.currentHealth = 0;
