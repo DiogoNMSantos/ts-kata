@@ -20,6 +20,10 @@ abstract class Character {
   }
 
   attack(defender: Character): void {
+    if (defender === this) {
+      return;
+    }
+
     defender.currentHealth -= 100;
 
     this.checkDefenderDied(defender);
@@ -39,6 +43,10 @@ abstract class Character {
     }
   }
 
+  protected isDefenderItself(defender: Character): boolean {
+    return defender === this;
+  }
+
   private checkMaxHealth(character: Character): void {
     if (character.currentHealth > this.maxHealth) {
       character.currentHealth = this.maxHealth;
@@ -52,6 +60,10 @@ class MeleeCharacter extends Character {
   }
 
   override attack(defender: Character): void {
+    if (this.isDefenderItself(defender)) {
+      return;
+    }
+
     defender.currentHealth -= 80;
 
     this.checkDefenderDied(defender);
@@ -64,6 +76,10 @@ class RangedCharacter extends Character {
   }
 
   override attack(defender: Character): void {
+    if (this.isDefenderItself(defender)) {
+      return;
+    }
+
     defender.currentHealth -= 110;
 
     this.checkDefenderDied(defender);

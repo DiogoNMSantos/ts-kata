@@ -50,6 +50,14 @@ describe('RPG Kata', () => {
 
         expect(defender.health()).toBe(620);
       });
+
+      test('Can not deal damage to itself', () => {
+        const attacker = new MeleeCharacter();
+
+        attacker.attack(attacker);
+
+        expect(attacker.health()).toBe(1000);
+      });
     });
 
     describe('Ranged', () => {
@@ -69,6 +77,14 @@ describe('RPG Kata', () => {
         attacker.attack(defender);
 
         expect(defender.health()).toBe(890);
+      });
+
+      test('Can not deal damage to itself', () => {
+        const attacker = new RangedCharacter();
+
+        attacker.attack(attacker);
+
+        expect(attacker.health()).toBe(700);
       });
     });
 
