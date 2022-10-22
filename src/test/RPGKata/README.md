@@ -42,7 +42,7 @@ Complete each iteration before reading the next one.
 
 3. When dealing damage:
 
-- If the target is 5 or more Levels above the attacker, Damage is reduced by 50%
+- If the target is 5 or more Levels above the attacker, **Damage** is reduced by 50%
 - If the target is 5 or more Levels below the attacker, Damage is increased by 50%
 
 4. when healing damage:

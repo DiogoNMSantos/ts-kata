@@ -68,6 +68,8 @@ class MeleeCharacter extends Character {
 
     if (defender.level() - this.level() >= 5) {
       defender.currentHealth -= 40;
+    } else if (this.level() - defender.level() >= 5) {
+      defender.currentHealth -= 120;
     } else {
       defender.currentHealth -= 80;
     }
@@ -88,6 +90,8 @@ class RangedCharacter extends Character {
 
     if (defender.level() - this.level() >= 5) {
       defender.currentHealth -= 55;
+    } else if (this.level() - defender.level() >= 5) {
+      defender.currentHealth -= 165;
     } else {
       defender.currentHealth -= 110;
     }
