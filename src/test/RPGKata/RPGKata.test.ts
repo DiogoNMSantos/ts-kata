@@ -132,7 +132,7 @@ describe('RPG Kata', () => {
       expect(defender.alive()).toBe(false);
     });
 
-    test('cannot raise health above Max health', () => {
+    test('Raises health by 80', () => {
       const attacker = new RangedCharacter();
       const defender = new RangedCharacter();
       const healer = new RangedCharacter();
@@ -142,6 +142,15 @@ describe('RPG Kata', () => {
       healer.heal(defender);
 
       expect(defender.health()).toBe(670);
+    });
+
+    test('cannot raise health above Max health', () => {
+      const defender = new RangedCharacter();
+      const healer = new RangedCharacter();
+
+      healer.heal(defender);
+
+      expect(defender.health()).toBe(700);
     });
   });
 });

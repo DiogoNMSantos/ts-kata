@@ -1,7 +1,9 @@
 abstract class Character {
   currentHealth = 0;
+  maxHealth = 0;
 
   constructor(maxHealth: number) {
+    this.maxHealth = maxHealth;
     this.currentHealth = maxHealth;
   }
 
@@ -26,12 +28,20 @@ abstract class Character {
   heal(healed: Character): void {
     if (healed.alive()) {
       healed.currentHealth += 80;
+
+      this.checkMaxHealth(healed);
     }
   }
 
   protected checkDefenderDied(defender: Character): void {
     if (defender.currentHealth <= 0) {
       defender.currentHealth = 0;
+    }
+  }
+
+  private checkMaxHealth(character: Character): void {
+    if (character.currentHealth > this.maxHealth) {
+      character.currentHealth = this.maxHealth;
     }
   }
 }
