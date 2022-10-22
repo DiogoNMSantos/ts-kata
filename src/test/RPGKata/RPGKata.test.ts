@@ -168,5 +168,15 @@ describe('RPG Kata', () => {
 
       expect(defender.health()).toBe(700);
     });
+
+    test('Healer can heal itself', () => {
+      const attacker = new RangedCharacter();
+      const healer = new RangedCharacter();
+
+      attacker.attack(healer);
+      healer.heal(healer);
+
+      expect(healer.health()).toBe(670);
+    });
   });
 });
