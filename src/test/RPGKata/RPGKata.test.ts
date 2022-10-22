@@ -58,6 +58,15 @@ describe('RPG Kata', () => {
 
         expect(attacker.health()).toBe(1000);
       });
+
+      test('if the target is 5 Levels above the attacker, Damage is reduced by 50%', () => {
+        const attacker = new MeleeCharacter();
+        const defender = new MeleeCharacter(6);
+
+        attacker.attack(defender);
+
+        expect(defender.health()).toBe(960);
+      });
     });
 
     describe('Ranged', () => {
@@ -85,6 +94,15 @@ describe('RPG Kata', () => {
         attacker.attack(attacker);
 
         expect(attacker.health()).toBe(700);
+      });
+
+      test('if the target is 5 Levels above the attacker, Damage is reduced by 50%', () => {
+        const attacker = new RangedCharacter();
+        const defender = new RangedCharacter(6);
+
+        attacker.attack(defender);
+
+        expect(defender.health()).toBe(645);
       });
     });
 

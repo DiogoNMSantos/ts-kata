@@ -1,10 +1,12 @@
 abstract class Character {
   currentHealth = 0;
   maxHealth = 0;
+  lvl = 1;
 
-  constructor(maxHealth: number) {
+  constructor(maxHealth: number, lvl: number) {
     this.maxHealth = maxHealth;
     this.currentHealth = maxHealth;
+    this.lvl = lvl;
   }
 
   health(): number {
@@ -12,7 +14,7 @@ abstract class Character {
   }
 
   level(): number {
-    return 1;
+    return this.lvl;
   }
 
   alive(): boolean {
@@ -55,8 +57,8 @@ abstract class Character {
 }
 
 class MeleeCharacter extends Character {
-  constructor() {
-    super(1000);
+  constructor(lvl = 1) {
+    super(1000, lvl);
   }
 
   override attack(defender: Character): void {
@@ -64,15 +66,19 @@ class MeleeCharacter extends Character {
       return;
     }
 
-    defender.currentHealth -= 80;
+    if (defender.level() - this.level() >= 5) {
+      defender.currentHealth -= 40;
+    } else {
+      defender.currentHealth -= 80;
+    }
 
     this.checkDefenderDied(defender);
   }
 }
 
 class RangedCharacter extends Character {
-  constructor() {
-    super(700);
+  constructor(lvl = 1) {
+    super(700, lvl);
   }
 
   override attack(defender: Character): void {
@@ -80,7 +86,11 @@ class RangedCharacter extends Character {
       return;
     }
 
-    defender.currentHealth -= 110;
+    if (defender.level() - this.level() >= 5) {
+      defender.currentHealth -= 55;
+    } else {
+      defender.currentHealth -= 110;
+    }
 
     this.checkDefenderDied(defender);
   }
