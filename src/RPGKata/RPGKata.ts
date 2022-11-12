@@ -35,6 +35,9 @@ abstract class Character {
 
   heal(healed: Character): void {
     if (healed.alive()) {
+      if (Math.abs(this.position - healed.position) > 10) {
+        return;
+      }
       if (healed.level() - this.level() >= 5) {
         healed.currentHealth += 40;
       } else if (this.level() - healed.level() >= 5) {

@@ -131,6 +131,15 @@ describe('RPG Kata', () => {
 
         expect(defender.health()).toBe(535);
       });
+
+      test('If the attacker and the defender are more than 20 meters apart form eachother, No damage is done', () => {
+        const attacker = new RangedCharacter(6, 21);
+        const defender = new MeleeCharacter(1, 0);
+
+        attacker.attack(defender);
+
+        expect(defender.health()).toBe(1000);
+      });
     });
 
     describe('A character dies when', () => {
@@ -247,12 +256,14 @@ describe('RPG Kata', () => {
     expect(defender.health()).toBe(1000);
   });
 
-  test('If the attacker and the defender are more than 20 meters apart form eachother, No damage is done', () => {
-    const attacker = new RangedCharacter(6, 21);
+  test('If the healer and the defender are more than 10 meters apart form eachother, No healing is done', () => {
+    const attacker = new MeleeCharacter(1, 1);
+    const healer = new RangedCharacter(1, 11);
     const defender = new MeleeCharacter(1, 0);
 
     attacker.attack(defender);
+    healer.heal(defender);
 
-    expect(defender.health()).toBe(1000);
+    expect(defender.health()).toBe(920);
   });
 });
