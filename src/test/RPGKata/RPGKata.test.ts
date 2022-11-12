@@ -246,4 +246,13 @@ describe('RPG Kata', () => {
 
     expect(defender.health()).toBe(1000);
   });
+
+  test('If the attacker and the defender are more than 20 meters apart form eachother, No damage is done', () => {
+    const attacker = new RangedCharacter(6, 21);
+    const defender = new MeleeCharacter(1, 0);
+
+    attacker.attack(defender);
+
+    expect(defender.health()).toBe(1000);
+  });
 });

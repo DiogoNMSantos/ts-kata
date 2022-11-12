@@ -91,12 +91,16 @@ class MeleeCharacter extends Character {
 }
 
 class RangedCharacter extends Character {
-  constructor(lvl = 1) {
-    super(700, lvl);
+  constructor(lvl = 1, x = 0) {
+    super(700, lvl, x);
   }
 
   override attack(defender: Character): void {
     if (this.isDefenderItself(defender)) {
+      return;
+    }
+
+    if (Math.abs(this.position - defender.position) > 20) {
       return;
     }
 
