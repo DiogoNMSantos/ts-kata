@@ -215,4 +215,26 @@ describe('RPG Kata', () => {
       expect(healer.health()).toBe(670);
     });
   });
+
+  test('if the defender is 5 Levels above the healer, healing is decreased by 50%', () => {
+    const attacker = new MeleeCharacter();
+    const defender = new MeleeCharacter(6);
+    const healer = new RangedCharacter();
+
+    attacker.attack(defender);
+    healer.heal(defender);
+
+    expect(defender.health()).toBe(1000);
+  });
+
+  test('if the defender is 5 Levels below the healer, healing is increase by 50%', () => {
+    const attacker = new MeleeCharacter();
+    const defender = new MeleeCharacter();
+    const healer = new RangedCharacter(6);
+
+    attacker.attack(defender);
+    healer.heal(defender);
+
+    expect(defender.health()).toBe(1000);
+  });
 });

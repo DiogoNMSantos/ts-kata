@@ -33,7 +33,13 @@ abstract class Character {
 
   heal(healed: Character): void {
     if (healed.alive()) {
-      healed.currentHealth += 80;
+      if (healed.level() - this.level() >= 5) {
+        healed.currentHealth += 40;
+      } else if (this.level() - healed.level() >= 5) {
+        healed.currentHealth += 120;
+      } else {
+        healed.currentHealth += 80;
+      }
 
       this.checkMaxHealth(healed);
     }
@@ -49,9 +55,9 @@ abstract class Character {
     return defender === this;
   }
 
-  private checkMaxHealth(character: Character): void {
-    if (character.currentHealth > this.maxHealth) {
-      character.currentHealth = this.maxHealth;
+  protected checkMaxHealth(character: Character): void {
+    if (character.currentHealth > character.maxHealth) {
+      character.currentHealth = character.maxHealth;
     }
   }
 }
