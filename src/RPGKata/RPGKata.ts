@@ -55,6 +55,11 @@ abstract class Character {
       return;
     }
 
+    this.healing(healed);
+    this.adjustMaxHealth(healed);
+  }
+
+  private healing(healed: Character) {
     if (this.IsBelowHealingThreshold(healed)) {
       healed.currentHealth += this.DecreasedHealing;
     } else if (this.IsAboveHealingThreshold(healed)) {
@@ -62,8 +67,6 @@ abstract class Character {
     } else {
       healed.currentHealth += this.DefaultHealing;
     }
-
-    this.checkMaxHealth(healed);
   }
 
   private IsAboveHealingThreshold(healed: Character) {
@@ -88,7 +91,7 @@ abstract class Character {
     return defender === this;
   }
 
-  protected checkMaxHealth(character: Character): void {
+  protected adjustMaxHealth(character: Character): void {
     if (character.currentHealth > character.maxHealth) {
       character.currentHealth = character.maxHealth;
     }
@@ -119,6 +122,12 @@ class MeleeCharacter extends Character {
       return;
     }
 
+    this.DealDamage(defender);
+
+    this.checkDefenderDied(defender);
+  }
+
+  private DealDamage(defender: Character) {
     if (this.isBelowMeleeLevelThreshold(defender)) {
       defender.currentHealth -= this.DecreasedMeleeDamage;
     } else if (this.IsAboveMeleeLevelThreshold(defender)) {
@@ -126,8 +135,6 @@ class MeleeCharacter extends Character {
     } else {
       defender.currentHealth -= this.DefaultMeleeDamage;
     }
-
-    this.checkDefenderDied(defender);
   }
 
   private IsAboveMeleeLevelThreshold(defender: Character) {
