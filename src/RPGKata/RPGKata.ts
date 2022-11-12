@@ -2,11 +2,13 @@ abstract class Character {
   currentHealth = 0;
   maxHealth = 0;
   lvl = 1;
+  position = 0;
 
-  constructor(maxHealth: number, lvl: number) {
+  constructor(maxHealth: number, lvl: number, x = 0) {
     this.maxHealth = maxHealth;
     this.currentHealth = maxHealth;
     this.lvl = lvl;
+    this.position = x;
   }
 
   health(): number {
@@ -63,12 +65,16 @@ abstract class Character {
 }
 
 class MeleeCharacter extends Character {
-  constructor(lvl = 1) {
-    super(1000, lvl);
+  constructor(lvl = 1, x = 0) {
+    super(1000, lvl, x);
   }
 
   override attack(defender: Character): void {
     if (this.isDefenderItself(defender)) {
+      return;
+    }
+
+    if (Math.abs(this.position - defender.position) > 2) {
       return;
     }
 
