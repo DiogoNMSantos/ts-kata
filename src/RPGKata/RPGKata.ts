@@ -1,8 +1,20 @@
 abstract class Character {
   currentHealth = 0;
-  maxHealth = 0;
-  lvl = 1;
+  private maxHealth = 0;
+  private lvl = 1;
   position = 0;
+
+  private readonly DefaultDamage = 100;
+
+  private readonly MaxHealingRange = 10;
+
+  private readonly HealingLevelThreshold = 5;
+
+  private readonly DecreasedHealing = 40;
+
+  private readonly IncreasedHealing = 120;
+
+  private readonly DefaultHealing = 80;
 
   constructor(maxHealth: number, lvl: number, x = 0) {
     this.maxHealth = maxHealth;
@@ -28,26 +40,40 @@ abstract class Character {
       return;
     }
 
-    defender.currentHealth -= 100;
+    defender.currentHealth -= this.DefaultDamage;
 
     this.checkDefenderDied(defender);
   }
 
   heal(healed: Character): void {
-    if (healed.alive()) {
-      if (Math.abs(this.position - healed.position) > 10) {
-        return;
-      }
-      if (healed.level() - this.level() >= 5) {
-        healed.currentHealth += 40;
-      } else if (this.level() - healed.level() >= 5) {
-        healed.currentHealth += 120;
-      } else {
-        healed.currentHealth += 80;
-      }
-
-      this.checkMaxHealth(healed);
+    if (!healed.alive()) {
+      return;
     }
+    if (this.IsNotInHealingRange(healed)) {
+      return;
+    }
+
+    if (this.IsBelowHealingThreshold(healed)) {
+      healed.currentHealth += this.DecreasedHealing;
+    } else if (this.IsAboveHealingThreshold(healed)) {
+      healed.currentHealth += this.IncreasedHealing;
+    } else {
+      healed.currentHealth += this.DefaultHealing;
+    }
+
+    this.checkMaxHealth(healed);
+  }
+
+  private IsAboveHealingThreshold(healed: Character) {
+    return this.level() - healed.level() >= this.HealingLevelThreshold;
+  }
+
+  private IsBelowHealingThreshold(healed: Character) {
+    return healed.level() - this.level() >= this.HealingLevelThreshold;
+  }
+
+  private IsNotInHealingRange(healed: Character) {
+    return Math.abs(this.position - healed.position) > this.MaxHealingRange;
   }
 
   protected checkDefenderDied(defender: Character): void {

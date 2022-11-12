@@ -56,7 +56,7 @@ Complete each iteration before reading the next one.
 - Melee fighters have a range of 2 meters.
 - Ranged fighters have a range of 20 meters.
 - Healers have a range of 10 meters.
-- Characters must be in range to deal damage to a target or to be healed.\*\*\*\*\*\*\*\*
+- Characters must be in range to deal damage to a target or to be healed.
 
 ### Iteration Four
 
