@@ -1,7 +1,7 @@
 abstract class Character {
   private combatPoints = 1000;
   private lvl = 1;
-  protected x = 0;
+  private x = 0;
 
   LEVEL_DAMAGE_DIFFERENCE = 5;
   DAMAGE = 100;
@@ -53,6 +53,10 @@ abstract class Character {
     }
   }
 
+  protected calculateDistance(other: Character): number {
+    return Math.abs(this.x - other.x);
+  }
+
   // Must override in children
   abstract isInRange(_: Character): boolean;
 
@@ -77,7 +81,7 @@ class Melee extends Character {
   MAX_RANGEE = 2;
 
   override isInRange(target: Melee): boolean {
-    return Math.abs(this.x - target.x) < this.MAX_RANGEE;
+    return this.calculateDistance(target) < this.MAX_RANGEE;
   }
 }
 
@@ -85,7 +89,7 @@ class Ranged extends Character {
   MAX_RANGEE = 20;
 
   override isInRange(target: Ranged): boolean {
-    return Math.abs(this.x - target.x) < this.MAX_RANGEE;
+    return this.calculateDistance(target) < this.MAX_RANGEE;
   }
 }
 
