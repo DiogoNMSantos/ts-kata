@@ -21,14 +21,60 @@ type Play = { player: Player; coordinate: Coordinate };
 //   }
 // }
 
-class TicTacToe {
-  moves = 0;
-  lastPlayer = '';
+class Board {
   plays: Play[] = [];
+
+  get moves() {
+    return this.plays.length;
+  }
+
+  play(play: Play) {
+    if (
+      this.plays.find(
+        (value) =>
+          value.coordinate.x === play.coordinate.x &&
+          value.coordinate.y === play.coordinate.y
+      )
+    ) {
+      throw 'position already played';
+    }
+    this.plays.push({ player: play.player, coordinate: play.coordinate });
+  }
+
+  row(rowNumber: number): Play[] {
+    return this.plays.filter((p) => p.coordinate.y === rowNumber);
+  }
+
+  winnerOnRow(row: Play[]): boolean {
+    return row.length === 3 && row.every((p) => p.player === row[0]?.player);
+  }
+
+  leftDiagonal(): Play[] {
+    return this.plays.filter(
+      (p) =>
+        (p.coordinate.x === 0 && p.coordinate.y === 2) ||
+        (p.coordinate.x === 1 && p.coordinate.y === 1) ||
+        (p.coordinate.x === 2 && p.coordinate.y === 0)
+    );
+  }
+
+  winnerOnLeftDiagonal(): boolean {
+    const diagonal = this.leftDiagonal();
+    return (
+      diagonal.length === 3 &&
+      diagonal.every((p) => p.player === diagonal[0]?.player)
+    );
+  }
+}
+
+class TicTacToe {
+  lastPlayer = '';
+  board = new Board();
 
   winner(): Winner {
     //[{x, {0, 0}}, {x, {1, 0}}, {x, {2, 0}}]
     const bottomRow = this.row(0);
+
     if (this.winnerOnRow(bottomRow)) {
       if (bottomRow[0] === null || bottomRow[0] === undefined) {
         return 'none';
@@ -54,7 +100,7 @@ class TicTacToe {
   }
 
   play(x: Position, y: Position, player: Player) {
-    if (player === 'O' && this.moves === 0) {
+    if (player === 'O' && this.board.moves === 0) {
       throw 'player O can not play first';
     }
 
@@ -62,44 +108,27 @@ class TicTacToe {
       throw 'player can not play twice in a row';
     }
 
-    if (
-      this.plays.find(
-        (value) => value.coordinate.x === x && value.coordinate.y === y
-      )
-    ) {
-      throw 'position already played';
-    }
+    this.board.play({ player: player, coordinate: { x: x, y: y } });
 
     this.lastPlayer = player;
-    this.moves++;
-    this.plays.push({ player: player, coordinate: { x, y } });
 
     return true;
   }
 
   private row(rowNumber: number): Play[] {
-    return this.plays.filter((p) => p.coordinate.y === rowNumber);
+    return this.board.row(rowNumber);
   }
 
   private winnerOnRow(row: Play[]): boolean {
-    return row.length === 3 && row.every((p) => p.player === row[0]?.player);
+    return this.board.winnerOnRow(row);
   }
 
   private leftDiagonal(): Play[] {
-    return this.plays.filter(
-      (p) =>
-        (p.coordinate.x === 0 && p.coordinate.y === 2) ||
-        (p.coordinate.x === 1 && p.coordinate.y === 1) ||
-        (p.coordinate.x === 2 && p.coordinate.y === 0)
-    );
+    return this.board.leftDiagonal();
   }
 
   private winnerOnLeftDiagonal(): boolean {
-    const diagonal = this.leftDiagonal();
-    return (
-      diagonal.length === 3 &&
-      diagonal.every((p) => p.player === diagonal[0]?.player)
-    );
+    return this.board.winnerOnLeftDiagonal();
   }
 }
 
