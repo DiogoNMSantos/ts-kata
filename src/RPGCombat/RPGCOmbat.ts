@@ -1,3 +1,7 @@
+// interface Damageble {
+//   recieveDamage(damage: number): void;
+// }
+
 interface Thing {
   get isAlive(): boolean;
   get health(): number;
@@ -10,12 +14,16 @@ interface Being extends Thing {
   heal(target: Character): void;
 }
 
-// class Wall implements Thing{
+// class Wall implements Thing, Damageble {
+//   combatPoints = 1000;
 //   get isAlive(): boolean {
-//     throw new Error("Method not implemented.");
+//     return this.health !== 0;
 //   }
 //   get health(): number {
-//     throw new Error("Method not implemented.");
+//     return this.combatPoints;
+//   }
+//   recieveDamage(damage: number): void {
+//     this.combatPoints -= damage;
 //   }
 // }
 
