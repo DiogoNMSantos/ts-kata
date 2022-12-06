@@ -1,4 +1,43 @@
-abstract class Character {
+interface Thing {
+  get isAlive(): boolean;
+  get health(): number;
+}
+
+interface Being extends Thing {
+  get level(): number;
+
+  attack(target: Character): void;
+  heal(target: Character): void;
+}
+
+// class Wall implements Thing{
+//   get isAlive(): boolean {
+//     throw new Error("Method not implemented.");
+//   }
+//   get health(): number {
+//     throw new Error("Method not implemented.");
+//   }
+// }
+
+// class Monster implements Being{
+//   attack(target: Character): void {
+//     throw new Error("Method not implemented.");
+//   }
+//   heal(target: Character): void {
+//     throw new Error("Method not implemented.");
+//   }
+//   get isAlive(): boolean {
+//     throw new Error("Method not implemented.");
+//   }
+//   get level(): number {
+//     throw new Error("Method not implemented.");
+//   }
+//   get health(): number {
+//     throw new Error("Method not implemented.");
+//   }
+// }
+
+abstract class Character implements Being {
   private combatPoints = 1000;
   private lvl = 1;
   private x = 0;
