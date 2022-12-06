@@ -13,7 +13,10 @@ class TicTacToe {
     //[{x, {0, 0}}, {x, {1, 0}}, {x, {2, 0}}]
     const bottomRow = this.row(0);
     if (this.winnerOnRow(bottomRow)) {
-      return bottomRow[0]?.player as Winner;
+      if (bottomRow[0] === null || bottomRow[0] === undefined) {
+        return 'none';
+      }
+      return bottomRow[0].player as Winner;
     }
 
     const middleRow = this.row(1);
@@ -24,6 +27,10 @@ class TicTacToe {
     const topRow = this.row(2);
     if (this.winnerOnRow(topRow)) {
       return topRow[0]?.player as Winner;
+    }
+
+    if (this.winnerOnLeftDiagonal()) {
+      return this.leftDiagonal()[0]?.player as Winner;
     }
 
     return 'none';
@@ -59,6 +66,23 @@ class TicTacToe {
 
   private winnerOnRow(row: Play[]): boolean {
     return row.length === 3 && row.every((p) => p.player === row[0]?.player);
+  }
+
+  private leftDiagonal(): Play[] {
+    return this.plays.filter(
+      (p) =>
+        (p.coordinate.x === 0 && p.coordinate.y === 2) ||
+        (p.coordinate.x === 1 && p.coordinate.y === 1) ||
+        (p.coordinate.x === 2 && p.coordinate.y === 0)
+    );
+  }
+
+  private winnerOnLeftDiagonal(): boolean {
+    const diagonal = this.leftDiagonal();
+    return (
+      diagonal.length === 3 &&
+      diagonal.every((p) => p.player === diagonal[0]?.player)
+    );
   }
 }
 
