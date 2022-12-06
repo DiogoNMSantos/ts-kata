@@ -4,6 +4,19 @@ type Winner = 'X' | 'O' | 'none' | 'draw';
 type Coordinate = { x: Position; y: Position };
 type Play = { player: Player; coordinate: Coordinate };
 
+// class SmartCoordinate {
+//   coordinate: Coordinate = { x: 0, y: 0 }
+
+//   constructor(row: Position, column: Position){
+//     this.coordinate = { x: row, y: column}
+//   }
+
+//   isSame(other: Coordinate): boolean {
+//     return this.coordinate.x === other.x &&
+//       this.coordinate.y === other.y
+//   }
+// }
+
 class TicTacToe {
   moves = 0;
   lastPlayer = '';
