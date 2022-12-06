@@ -1,3 +1,11 @@
+// type DiceNumber = 1 | 2 | 3 | 4 | 5 | 6;
+
+// class Dice {
+//   roll(): DiceNumber {
+//     return Math.random() * 5 + 1 as DiceNumber;
+//   }
+// }
+
 // interface Damageble {
 //   recieveDamage(damage: number): void;
 // }

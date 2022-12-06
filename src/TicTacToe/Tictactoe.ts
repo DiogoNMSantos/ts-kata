@@ -4,7 +4,11 @@ type Winner = 'X' | 'O' | 'none' | 'draw';
 type Coordinate = { x: Position; y: Position };
 type Play = { player: Player; coordinate: Coordinate };
 
-// class SmartCoordinate {
+// interface ComparableCoordinate {
+//   isSame(other: Coordinate): boolean
+// }
+
+// class SmartCoordinate implements ComparableCoordinate{
 //   coordinate: Coordinate = { x: 0, y: 0 }
 
 //   constructor(row: Position, column: Position){
