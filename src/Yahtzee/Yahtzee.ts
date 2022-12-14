@@ -12,6 +12,30 @@ class Roll {
     return this.roll.filter((d) => d === die);
   }
 
+  sum(die: Die): number {
+    return this.filterBy(die).reduce((accumulator, current) => {
+      return accumulator + current;
+    }, 0);
+  }
+
+  repeated(repeats: number, times = 1): number {
+    const repeat = this.countDice().filter((count) => count[1] === repeats);
+
+    if (repeat.length === times) {
+      if (
+        repeat !== null &&
+        repeat !== undefined &&
+        repeat[0] !== null &&
+        repeat[0] !== undefined &&
+        repeat[0][0] !== null &&
+        repeat[0][0] !== undefined //Only need for compiler/linter
+      ) {
+        return repeat[0][0] * repeats;
+      }
+    }
+    return 0;
+  }
+
   countDice(): Array<number[]> {
     const diceCount = this.roll.reduce(
       (groups: Map<number, number>, die: number) => {
@@ -48,54 +72,31 @@ enum Categories {
 class Yahtzee {
   scoreRoll(roll: Roll, category: Categories, _: string): number {
     if (category === Categories.Ones) {
-      return roll.filterBy(1).reduce((accumulator, current) => {
-        return accumulator + current;
-      }, 0);
+      return roll.sum(1);
     }
 
     if (category === Categories.Twos) {
-      return roll.filterBy(2).reduce((accumulator, current) => {
-        return accumulator + current;
-      }, 0);
+      return roll.sum(2);
     }
 
     if (category === Categories.Threes) {
-      return roll.filterBy(3).reduce((accumulator, current) => {
-        return accumulator + current;
-      }, 0);
+      return roll.sum(3);
     }
 
     if (category === Categories.Fours) {
-      return roll.filterBy(4).reduce((accumulator, current) => {
-        return accumulator + current;
-      }, 0);
+      return roll.sum(4);
     }
 
     if (category === Categories.Fives) {
-      return roll.filterBy(5).reduce((accumulator, current) => {
-        return accumulator + current;
-      }, 0);
+      return roll.sum(5);
     }
 
     if (category === Categories.Sixes) {
-      return roll.filterBy(6).reduce((accumulator, current) => {
-        return accumulator + current;
-      }, 0);
+      return roll.sum(6);
     }
 
     if (category === Categories.Pair) {
-      const pairs = roll.countDice().filter((count) => count[1] === 2);
-      if (
-        pairs !== null &&
-        pairs !== undefined &&
-        pairs[0] !== null &&
-        pairs[0] !== undefined && //Only need for compiler/linter
-        pairs[0][0] !== null &&
-        pairs[0][0] !== undefined
-      ) {
-        return pairs[0][0] + pairs[0][0];
-      }
-      return 0;
+      return roll.repeated(2);
     }
 
     if (category === Categories.TwoPairs) {
@@ -119,35 +120,11 @@ class Yahtzee {
     }
 
     if (category === Categories.ThreeOfAKind) {
-      const pairs = roll.countDice().filter((count) => count[1] === 3);
-      if (
-        pairs !== null &&
-        pairs !== undefined &&
-        pairs[0] !== null &&
-        pairs[0] !== undefined && //Only need for compiler/linter
-        pairs[0][0] !== null &&
-        pairs[0][0] !== undefined &&
-        pairs[0][0] !== null &&
-        pairs[0][0] !== undefined
-      ) {
-        return pairs[0][0] + pairs[0][0] + pairs[0][0];
-      }
-      return 0;
+      return roll.repeated(3);
     }
 
     if (category === Categories.FourOfAKind) {
-      const pairs = roll.countDice().filter((count) => count[1] === 4);
-      if (
-        pairs !== null &&
-        pairs !== undefined &&
-        pairs[0] !== null &&
-        pairs[0] !== undefined && //Only need for compiler/linter
-        pairs[0][0] !== null &&
-        pairs[0][0] !== undefined
-      ) {
-        return pairs[0][0] + pairs[0][0] + pairs[0][0] + pairs[0][0];
-      }
-      return 0;
+      return roll.repeated(4);
     }
 
     return 0;
