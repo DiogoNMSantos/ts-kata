@@ -15,7 +15,7 @@ import TicTacToe from '../../TicTacToe/Tictactoe';
 
 describe('Tic Tac Toe', () => {
   test('player O can not play in the first move', () => {
-    expect(() => new TicTacToe().play(1, 1, 'O')).toThrowError(
+    expect(() => new TicTacToe().play(1, 1, 'O')).toThrow(
       'player O can not play first'
     );
   });
@@ -33,7 +33,7 @@ describe('Tic Tac Toe', () => {
   test('Player X can not play in the second move', () => {
     const game = new TicTacToe();
     game.play(1, 1, 'X');
-    expect(() => game.play(2, 2, 'X')).toThrowError(
+    expect(() => game.play(2, 2, 'X')).toThrow(
       'player can not play twice in a row'
     );
   });
@@ -41,14 +41,14 @@ describe('Tic Tac Toe', () => {
   test('Player O can not play where player X has played', () => {
     const game = new TicTacToe();
     game.play(1, 1, 'X');
-    expect(() => game.play(1, 1, 'O')).toThrowError('position already played');
+    expect(() => game.play(1, 1, 'O')).toThrow('position already played');
   });
 
   test('Player can not play on any previous played position', () => {
     const game = new TicTacToe();
     game.play(1, 1, 'X');
     game.play(2, 2, 'O');
-    expect(() => game.play(1, 1, 'X')).toThrowError('position already played');
+    expect(() => game.play(1, 1, 'X')).toThrow('position already played');
   });
 
   test('Player X wins on bottom row when all three bottom boxes are filled', () => {
