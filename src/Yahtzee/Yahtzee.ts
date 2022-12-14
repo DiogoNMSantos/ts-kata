@@ -70,35 +70,19 @@ enum Categories {
 }
 
 class Yahtzee {
+  private categoryCalculation = new Map<Categories, Function>([
+    [Categories.Ones, (r: Roll) => r.sum(1)],
+    [Categories.Twos, (r: Roll) => r.sum(2)],
+    [Categories.Threes, (r: Roll) => r.sum(3)],
+    [Categories.Fours, (r: Roll) => r.sum(4)],
+    [Categories.Fives, (r: Roll) => r.sum(5)],
+    [Categories.Sixes, (r: Roll) => r.sum(6)],
+    [Categories.Pair, (r: Roll) => r.repeated(2)],
+    [Categories.ThreeOfAKind, (r: Roll) => r.repeated(3)],
+    [Categories.FourOfAKind, (r: Roll) => r.repeated(4)],
+  ]);
+
   scoreRoll(roll: Roll, category: Categories, _: string): number {
-    if (category === Categories.Ones) {
-      return roll.sum(1);
-    }
-
-    if (category === Categories.Twos) {
-      return roll.sum(2);
-    }
-
-    if (category === Categories.Threes) {
-      return roll.sum(3);
-    }
-
-    if (category === Categories.Fours) {
-      return roll.sum(4);
-    }
-
-    if (category === Categories.Fives) {
-      return roll.sum(5);
-    }
-
-    if (category === Categories.Sixes) {
-      return roll.sum(6);
-    }
-
-    if (category === Categories.Pair) {
-      return roll.repeated(2);
-    }
-
     if (category === Categories.TwoPairs) {
       const pairs = roll.countDice().filter((count) => count[1] === 2);
       if (pairs.length === 2) {
@@ -119,13 +103,45 @@ class Yahtzee {
       }
     }
 
-    if (category === Categories.ThreeOfAKind) {
-      return roll.repeated(3);
+    const calculator = this.categoryCalculation.get(category);
+    if (calculator !== null && calculator !== undefined) {
+      return calculator(roll);
     }
 
-    if (category === Categories.FourOfAKind) {
-      return roll.repeated(4);
-    }
+    // if (category === Categories.Ones) {
+    //   return roll.sum(1);
+    // }
+
+    // if (category === Categories.Twos) {
+    //   return roll.sum(2);
+    // }
+
+    // if (category === Categories.Threes) {
+    //   return roll.sum(3);
+    // }
+
+    // if (category === Categories.Fours) {
+    //   return roll.sum(4);
+    // }
+
+    // if (category === Categories.Fives) {
+    //   return roll.sum(5);
+    // }
+
+    // if (category === Categories.Sixes) {
+    //   return roll.sum(6);
+    // }
+
+    // if (category === Categories.Pair) {
+    //   return roll.repeated(2);
+    // }
+    // if (category === Categories.ThreeOfAKind) {
+    //   return roll.repeated(3);
+    // }
+
+    // if (category === Categories.FourOfAKind) {
+    //   return roll.repeated(4);
+    // }
 
     return 0;
   }
