@@ -1,3 +1,14 @@
+function ensure<T>(
+  argument: T | undefined | null,
+  message = 'This value was promised to be there.'
+): T {
+  if (argument === undefined || argument === null) {
+    throw new TypeError(message);
+  }
+
+  return argument;
+}
+
 type Die = 1 | 2 | 3 | 4 | 5 | 6;
 // type Pair = 1; 1
 
@@ -22,16 +33,7 @@ class Roll {
     const repeat = this.countDice().filter((count) => count[1] === repeats);
 
     if (repeat.length === times) {
-      if (
-        repeat !== null &&
-        repeat !== undefined &&
-        repeat[0] !== null &&
-        repeat[0] !== undefined &&
-        repeat[0][0] !== null &&
-        repeat[0][0] !== undefined //Only need for compiler/linter
-      ) {
-        return repeat[0][0] * repeats;
-      }
+      return ensure(ensure(repeat[0])[0]) * repeats;
     }
     return 0;
   }
@@ -69,40 +71,46 @@ enum Categories {
   FourOfAKind,
 }
 
+interface Category {
+  score(roll: Roll): number;
+}
+
+class Ones implements Category {
+  score(roll: Roll): number {
+    return roll.sum(1);
+  }
+}
+
+class TwoPairs implements Category {
+  score(roll: Roll): number {
+    const pairs = roll.countDice().filter((count) => count[1] === 2);
+    if (pairs.length === 2) {
+      return (
+        ensure(ensure(pairs[0])[0]) +
+        ensure(ensure(pairs[0])[0]) +
+        ensure(ensure(pairs[1])[0]) +
+        ensure(ensure(pairs[1])[0])
+      );
+    }
+    return 0;
+  }
+}
+
 class Yahtzee {
-  private categoryCalculation = new Map<Categories, Function>([
-    [Categories.Ones, (r: Roll) => r.sum(1)],
+  private categoryCalculation = new Map<Categories, (r: Roll) => number>([
+    [Categories.Ones, (r: Roll) => new Ones().score(r)],
     [Categories.Twos, (r: Roll) => r.sum(2)],
     [Categories.Threes, (r: Roll) => r.sum(3)],
     [Categories.Fours, (r: Roll) => r.sum(4)],
     [Categories.Fives, (r: Roll) => r.sum(5)],
     [Categories.Sixes, (r: Roll) => r.sum(6)],
     [Categories.Pair, (r: Roll) => r.repeated(2)],
+    [Categories.TwoPairs, (r: Roll) => new TwoPairs().score(r)],
     [Categories.ThreeOfAKind, (r: Roll) => r.repeated(3)],
     [Categories.FourOfAKind, (r: Roll) => r.repeated(4)],
   ]);
 
   scoreRoll(roll: Roll, category: Categories, _: string): number {
-    if (category === Categories.TwoPairs) {
-      const pairs = roll.countDice().filter((count) => count[1] === 2);
-      if (pairs.length === 2) {
-        if (
-          pairs !== null &&
-          pairs !== undefined &&
-          pairs[0] !== null &&
-          pairs[0] !== undefined &&
-          pairs[0][0] !== null &&
-          pairs[0][0] !== undefined && //Only need for compiler/linter
-          pairs[1] !== null &&
-          pairs[1] !== undefined &&
-          pairs[1][0] !== null &&
-          pairs[1][0] !== undefined
-        ) {
-          return pairs[0][0] + pairs[0][0] + pairs[1][0] + pairs[1][0];
-        }
-      }
-    }
-
     const calculator = this.categoryCalculation.get(category);
     if (calculator !== null && calculator !== undefined) {
       return calculator(roll);
