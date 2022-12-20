@@ -343,4 +343,54 @@ describe('Yathzee', () => {
       ).toBe(24);
     });
   });
+
+  describe('Total', () => {
+    test('Total score is the sum of two rolls', () => {
+      const rollOne: Roll = new Roll(1, 1, 1, 1, 1);
+      const rollTwo: Roll = new Roll(2, 2, 2, 2, 2);
+      const game = new Yathzee();
+
+      game.scoreRoll(rollOne, Categories.Ones, 'Diogo');
+      game.scoreRoll(rollTwo, Categories.Twos, 'Diogo');
+
+      expect(game.totalScoreFor('Diogo')).toBe(15);
+    });
+  });
+
+  test('Total score is the sum of three rolls', () => {
+    const rollOne: Roll = new Roll(1, 1, 1, 1, 1);
+    const rollTwo: Roll = new Roll(2, 2, 2, 2, 2);
+    const rollThree: Roll = new Roll(3, 3, 3, 3, 3);
+    const game = new Yathzee();
+
+    game.scoreRoll(rollOne, Categories.Ones, 'Diogo');
+    game.scoreRoll(rollTwo, Categories.Twos, 'Diogo');
+    game.scoreRoll(rollThree, Categories.Threes, 'Diogo');
+
+    expect(game.totalScoreFor('Diogo')).toBe(30);
+  });
+
+  describe('Same player can not play twice in', () => {
+    test('Ones category', () => {
+      const rollOne: Roll = new Roll(1, 1, 1, 1, 1);
+      const game = new Yathzee();
+
+      game.scoreRoll(rollOne, Categories.Ones, 'Diogo');
+      expect(() => game.scoreRoll(rollOne, Categories.Ones, 'Diogo')).toThrow(
+        'Category already played'
+      );
+    });
+
+    test('Ones and twos category', () => {
+      const rollOne: Roll = new Roll(1, 1, 1, 1, 1);
+      const rollTwo: Roll = new Roll(2, 2, 2, 2, 2);
+      const game = new Yathzee();
+
+      game.scoreRoll(rollOne, Categories.Ones, 'Diogo');
+      game.scoreRoll(rollTwo, Categories.Twos, 'Diogo');
+      expect(() => game.scoreRoll(rollOne, Categories.Ones, 'Diogo')).toThrow(
+        'Category already played'
+      );
+    });
+  });
 });

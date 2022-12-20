@@ -96,7 +96,44 @@ class TwoPairs implements Category {
   }
 }
 
+class Totals {
+  private totals = new Map<string, number>();
+
+  addScore(player: string, score: number) {
+    if (this.totals.has(player)) {
+      score = score + ensure(this.totals.get(player));
+    }
+
+    this.totals.set(player, score);
+  }
+  getScore(player: string): number {
+    return ensure(this.totals.get(player));
+  }
+}
+
+class CategoriesPlayed {
+  private playedCaterogies = new Map<string, Categories[]>();
+
+  addCategory(player: string, category: Categories) {
+    const playerCategories = this.playedCaterogies.get(player);
+
+    if (playerCategories && playerCategories.includes(category)) {
+      throw new Error('Category already played');
+    }
+
+    if (playerCategories) {
+      this.playedCaterogies.set(player, playerCategories.concat([category]));
+      return;
+    }
+
+    this.playedCaterogies.set(player, [category]);
+  }
+}
+
 class Yahtzee {
+  private totals = new Totals();
+  private categoriesPlayed = new CategoriesPlayed();
+
   private categoryCalculation = new Map<Categories, (r: Roll) => number>([
     [Categories.Ones, (r: Roll) => new Ones().score(r)],
     [Categories.Twos, (r: Roll) => r.sum(2)],
@@ -110,11 +147,19 @@ class Yahtzee {
     [Categories.FourOfAKind, (r: Roll) => r.repeated(4)],
   ]);
 
-  scoreRoll(roll: Roll, category: Categories, _: string): number {
+  totalScoreFor(player: string): number {
+    return ensure(this.totals.getScore(player));
+  }
+
+  scoreRoll(roll: Roll, category: Categories, player: string): number {
+    let score = 0;
     const calculator = this.categoryCalculation.get(category);
     if (calculator !== null && calculator !== undefined) {
-      return calculator(roll);
+      score = calculator(roll);
     }
+    this.totals.addScore(player, score);
+    this.categoriesPlayed.addCategory(player, category);
+    return score;
 
     // if (category === Categories.Ones) {
     //   return roll.sum(1);
