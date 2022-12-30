@@ -393,4 +393,16 @@ describe('Yathzee', () => {
       );
     });
   });
+
+  // describe('Different players can play in', () => {
+  //   test('Ones category', () => {
+  //     const rollOne: Roll = new Roll(1, 1, 1, 1, 1);
+  //     const rollTwo: Roll = new Roll(1, 1, 1, 1, 1);
+  //     const game = new Yathzee();
+
+  //     game.scoreRoll(rollOne, Categories.Ones, 'Diogo');
+
+  //     expect(() => game.scoreRoll(rollTwo, Categories.Ones, 'Pedro')).toBe(5);
+  //   });
+  // });
 });
